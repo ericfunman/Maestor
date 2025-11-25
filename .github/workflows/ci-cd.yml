@@ -32,16 +32,17 @@ jobs:
       working-directory: ./backend
       run: mvn jacoco:report
     
-    - name: SonarQube Scan
-      working-directory: ./backend
-      env:
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-      run: |
-        mvn sonar:sonar \
-          -Dsonar.projectKey=maestror-backend \
-          -Dsonar.host.url=$SONAR_HOST_URL \
-          -Dsonar.login=$SONAR_TOKEN
+    # SonarQube Scan - Uncomment when SONAR_TOKEN is configured
+    # - name: SonarQube Scan
+    #   working-directory: ./backend
+    #   env:
+    #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+    #     SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+    #   run: |
+    #     mvn sonar:sonar \
+    #       -Dsonar.projectKey=maestror-backend \
+    #       -Dsonar.host.url=$SONAR_HOST_URL \
+    #       -Dsonar.login=$SONAR_TOKEN
     
     - name: Build Docker Image
       working-directory: ./backend
