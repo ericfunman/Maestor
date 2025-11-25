@@ -150,8 +150,11 @@ export class FileUploadComponent {
         this.uploadHistory.unshift(response);
         this.uploading = false;
         this.selectedFile = null;
+        // Réinitialiser l'input file pour permettre un nouvel upload
+        const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement;
+        if (fileInput) fileInput.value = '';
       },
-      error: (error) => {
+      error: (error: any) => {
         console.error('Upload error:', error);
         this.uploading = false;
       }

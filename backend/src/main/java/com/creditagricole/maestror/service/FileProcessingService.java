@@ -49,7 +49,12 @@ public class FileProcessingService {
                 throw new IllegalArgumentException("Unsupported file type: " + fileStorage.getFileType());
             }
             
-            fileStorage.setTotalRecords(records.size() - 1); // Exclude header
+            // Pour TEST, pas d'en-tête - compter toutes les lignes
+            if ("TEST".equals(fileStorage.getCategory())) {
+                fileStorage.setTotalRecords(records.size());
+            } else {
+                fileStorage.setTotalRecords(records.size() - 1); // Exclude header pour les autres
+            }
             
             // Process based on category
             switch (fileStorage.getCategory()) {
@@ -226,7 +231,8 @@ public class FileProcessingService {
         int processed = 0;
         int failed = 0;
         
-        for (int i = 1; i < records.size(); i++) {
+        // Pour TEST, pas d'en-tête - traiter toutes les lignes depuis i=0
+        for (int i = 0; i < records.size(); i++) {
             try {
                 String[] row = records.get(i);
                 
