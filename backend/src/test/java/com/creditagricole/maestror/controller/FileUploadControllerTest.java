@@ -26,7 +26,7 @@ class FileUploadControllerTest {
     private FileUploadController fileUploadController;
 
     @Test
-    void testUploadFile_Success() throws Exception {
+    void testUploadFile_Success() {
         MockMultipartFile file = new MockMultipartFile(
             "file",
             "test.csv",

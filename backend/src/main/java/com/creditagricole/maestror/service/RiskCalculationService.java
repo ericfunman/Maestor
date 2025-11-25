@@ -9,18 +9,28 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
 @Slf4j
 public class RiskCalculationService {
 
+    // Issue #3 et #6 - Constantes pour litteraux dupliques
+    private static final String RISK_LEVEL_MEDIUM = "MEDIUM";
+    private static final String ERROR_LOG_MESSAGE = "Error processing row {}: {}";
+    private static final int MAX_FILE_SIZE_MB = 50;
+
     private final OperationalRiskReferentialRepository riskReferentialRepository;
     private final IncidentRepository incidentRepository;
     private final ControlRepository controlRepository;
     private final RiskCalculationRepository riskCalculationRepository;
+    
+    // Self-reference for calling transactional methods
+    private RiskCalculationService self;
 
     /**
      * Scheduled task that runs daily at 2:00 AM
@@ -68,9 +78,10 @@ public class RiskCalculationService {
                 .filter(c -> "ACTIVE".equals(c.getStatus()) && "EFFECTIVE".equals(c.getEffectiveness()))
                 .count();
         
+        // Issue #17 - Utiliser method reference au lieu de lambda
         BigDecimal totalFinancialImpact = incidents.stream()
                 .map(Incident::getFinancialImpact)
-                .filter(impact -> impact != null)
+                .filter(Objects::nonNull)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
         
         // Calculate risk score (simple algorithm - can be enhanced)
@@ -114,32 +125,32 @@ public class RiskCalculationService {
             String impactLevel,
             String probabilityLevel) {
         
-        // Base score from incidents
-        BigDecimal incidentScore = BigDecimal.valueOf(incidentCount * 10);
+        // Issue #11 - Cast to long pour eviter overflow
+        BigDecimal incidentScore = BigDecimal.valueOf((long) incidentCount * 10);
         
-        // Impact level multiplier
-        BigDecimal impactMultiplier = switch (impactLevel != null ? impactLevel : "MEDIUM") {
+        // Impact level multiplier - Issue #3 utiliser constante
+        BigDecimal impactMultiplier = switch (impactLevel != null ? impactLevel : RISK_LEVEL_MEDIUM) {
             case "HIGH" -> BigDecimal.valueOf(1.5);
             case "MEDIUM" -> BigDecimal.ONE;
             case "LOW" -> BigDecimal.valueOf(0.5);
             default -> BigDecimal.ONE;
         };
         
-        // Probability level multiplier
-        BigDecimal probabilityMultiplier = switch (probabilityLevel != null ? probabilityLevel : "MEDIUM") {
+        // Probability level multiplier - Issue #3 utiliser constante
+        BigDecimal probabilityMultiplier = switch (probabilityLevel != null ? probabilityLevel : RISK_LEVEL_MEDIUM) {
             case "HIGH" -> BigDecimal.valueOf(1.5);
             case "MEDIUM" -> BigDecimal.ONE;
             case "LOW" -> BigDecimal.valueOf(0.5);
             default -> BigDecimal.ONE;
         };
         
-        // Control effectiveness reduction
+        // Control effectiveness reduction - Issue #12, #15, #16, #18, #19, #20 - Utiliser RoundingMode
         BigDecimal controlReduction = activeControlCount > 0
-                ? BigDecimal.valueOf(effectiveControlCount).divide(BigDecimal.valueOf(activeControlCount), 2, BigDecimal.ROUND_HALF_UP)
+                ? BigDecimal.valueOf(effectiveControlCount).divide(BigDecimal.valueOf(activeControlCount), 2, RoundingMode.HALF_UP)
                 : BigDecimal.ZERO;
         
         // Financial impact score (normalized)
-        BigDecimal financialScore = financialImpact.divide(BigDecimal.valueOf(10000), 2, BigDecimal.ROUND_HALF_UP);
+        BigDecimal financialScore = financialImpact.divide(BigDecimal.valueOf(10000), 2, RoundingMode.HALF_UP);
         
         // Final calculation
         BigDecimal score = incidentScore
@@ -148,7 +159,7 @@ public class RiskCalculationService {
                 .add(financialScore)
                 .multiply(BigDecimal.ONE.subtract(controlReduction.multiply(BigDecimal.valueOf(0.5))));
         
-        return score.max(BigDecimal.ZERO).setScale(2, BigDecimal.ROUND_HALF_UP);
+        return score.max(BigDecimal.ZERO).setScale(2, RoundingMode.HALF_UP);
     }
 
     /**
@@ -186,6 +197,7 @@ public class RiskCalculationService {
 
     /**
      * Calculate risk for a specific entity
+     * Issue #2 et #4 - Injecter self pour appeler methodes transactionnelles
      */
     @Transactional
     public void calculateRiskForEntity(String entityCode) {
@@ -194,7 +206,17 @@ public class RiskCalculationService {
         List<OperationalRiskReferential> activeRisks = riskReferentialRepository.findByActive(true);
         
         for (OperationalRiskReferential risk : activeRisks) {
-            calculateRiskForReferential(risk);
+            // Appeler via self si disponible pour respecter les transactions
+            if (self != null) {
+                self.calculateRiskForReferential(risk);
+            } else {
+                calculateRiskForReferential(risk);
+            }
         }
+    }
+    
+    // Setter pour injection de self
+    public void setSelf(RiskCalculationService self) {
+        this.self = self;
     }
 }

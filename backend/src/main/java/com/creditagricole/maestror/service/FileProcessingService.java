@@ -25,6 +25,10 @@ import java.util.List;
 @Slf4j
 public class FileProcessingService {
 
+    // Issue #5 et #6 - Constantes pour litteraux dupliques
+    private static final String RISK_LEVEL_MEDIUM = "MEDIUM";
+    private static final String ERROR_LOG_MESSAGE = "Error processing row {}: {}";
+
     private final FileStorageRepository fileStorageRepository;
     private final OperationalRiskReferentialRepository riskReferentialRepository;
     private final IncidentRepository incidentRepository;
@@ -131,6 +135,7 @@ public class FileProcessingService {
             try {
                 String[] row = records.get(i);
                 
+                // Issue #6 - Utiliser constante
                 OperationalRiskReferential risk = OperationalRiskReferential.builder()
                         .riskCode(row[0])
                         .riskName(row[1])
@@ -138,8 +143,8 @@ public class FileProcessingService {
                         .riskCategory(row.length > 3 ? row[3] : "")
                         .riskType(row.length > 4 ? row[4] : "")
                         .businessLine(row.length > 5 ? row[5] : "")
-                        .impactLevel(row.length > 6 ? row[6] : "MEDIUM")
-                        .probabilityLevel(row.length > 7 ? row[7] : "MEDIUM")
+                        .impactLevel(row.length > 6 ? row[6] : RISK_LEVEL_MEDIUM)
+                        .probabilityLevel(row.length > 7 ? row[7] : RISK_LEVEL_MEDIUM)
                         .active(true)
                         .fileStorage(fileStorage)
                         .build();
@@ -148,7 +153,8 @@ public class FileProcessingService {
                 processed++;
                 
             } catch (Exception e) {
-                log.error("Error processing row {}: {}", i, e.getMessage());
+                // Issue #5 - Utiliser constante
+                log.error(ERROR_LOG_MESSAGE, i, e.getMessage());
                 failed++;
             }
         }
@@ -157,34 +163,18 @@ public class FileProcessingService {
         fileStorage.setFailedRecords(failed);
     }
 
+    // Issue #7 - Extraire methode pour reduire complexite cognitive
     private void processIncidentData(List<String[]> records, FileStorage fileStorage) {
         int processed = 0;
         int failed = 0;
         
         for (int i = 1; i < records.size(); i++) {
             try {
-                String[] row = records.get(i);
-                
-                Incident incident = Incident.builder()
-                        .incidentCode(row[0])
-                        .incidentTitle(row[1])
-                        .incidentDescription(row.length > 2 ? row[2] : "")
-                        .incidentDate(row.length > 3 ? LocalDate.parse(row[3]) : LocalDate.now())
-                        .severity(row.length > 4 ? row[4] : "MEDIUM")
-                        .status(row.length > 5 ? row[5] : "OPEN")
-                        .entityCode(row.length > 6 ? row[6] : "")
-                        .businessUnit(row.length > 7 ? row[7] : "")
-                        .financialImpact(row.length > 8 && !row[8].isEmpty() ? new BigDecimal(row[8]) : BigDecimal.ZERO)
-                        .currency(row.length > 9 ? row[9] : "EUR")
-                        .detectedBy(row.length > 10 ? row[10] : "")
-                        .fileStorage(fileStorage)
-                        .build();
-                
+                Incident incident = buildIncidentFromRow(records.get(i), fileStorage);
                 incidentRepository.save(incident);
                 processed++;
-                
             } catch (Exception e) {
-                log.error("Error processing row {}: {}", i, e.getMessage());
+                log.error(ERROR_LOG_MESSAGE, i, e.getMessage());
                 failed++;
             }
         }
@@ -192,39 +182,57 @@ public class FileProcessingService {
         fileStorage.setProcessedRecords(processed);
         fileStorage.setFailedRecords(failed);
     }
+    
+    private Incident buildIncidentFromRow(String[] row, FileStorage fileStorage) {
+        return Incident.builder()
+                .incidentCode(row[0])
+                .incidentTitle(row[1])
+                .incidentDescription(row.length > 2 ? row[2] : "")
+                .incidentDate(row.length > 3 ? LocalDate.parse(row[3]) : LocalDate.now())
+                .severity(row.length > 4 ? row[4] : RISK_LEVEL_MEDIUM)
+                .status(row.length > 5 ? row[5] : "OPEN")
+                .entityCode(row.length > 6 ? row[6] : "")
+                .businessUnit(row.length > 7 ? row[7] : "")
+                .financialImpact(row.length > 8 && !row[8].isEmpty() ? new BigDecimal(row[8]) : BigDecimal.ZERO)
+                .currency(row.length > 9 ? row[9] : "EUR")
+                .detectedBy(row.length > 10 ? row[10] : "")
+                .fileStorage(fileStorage)
+                .build();
+    }
 
+    // Issue #8 - Extraire methode pour reduire complexite cognitive
     private void processControlData(List<String[]> records, FileStorage fileStorage) {
         int processed = 0;
         int failed = 0;
         
         for (int i = 1; i < records.size(); i++) {
             try {
-                String[] row = records.get(i);
-                
-                Control control = Control.builder()
-                        .controlCode(row[0])
-                        .controlName(row[1])
-                        .controlDescription(row.length > 2 ? row[2] : "")
-                        .controlType(row.length > 3 ? row[3] : "DETECTIVE")
-                        .frequency(row.length > 4 ? row[4] : "MONTHLY")
-                        .entityCode(row.length > 5 ? row[5] : "")
-                        .responsiblePerson(row.length > 6 ? row[6] : "")
-                        .status(row.length > 7 ? row[7] : "ACTIVE")
-                        .effectiveness(row.length > 8 ? row[8] : "EFFECTIVE")
-                        .fileStorage(fileStorage)
-                        .build();
-                
+                Control control = buildControlFromRow(records.get(i), fileStorage);
                 controlRepository.save(control);
                 processed++;
-                
             } catch (Exception e) {
-                log.error("Error processing row {}: {}", i, e.getMessage());
+                log.error(ERROR_LOG_MESSAGE, i, e.getMessage());
                 failed++;
             }
         }
         
         fileStorage.setProcessedRecords(processed);
         fileStorage.setFailedRecords(failed);
+    }
+    
+    private Control buildControlFromRow(String[] row, FileStorage fileStorage) {
+        return Control.builder()
+                .controlCode(row[0])
+                .controlName(row[1])
+                .controlDescription(row.length > 2 ? row[2] : "")
+                .controlType(row.length > 3 ? row[3] : "DETECTIVE")
+                .frequency(row.length > 4 ? row[4] : "MONTHLY")
+                .entityCode(row.length > 5 ? row[5] : "")
+                .responsiblePerson(row.length > 6 ? row[6] : "")
+                .status(row.length > 7 ? row[7] : "ACTIVE")
+                .effectiveness(row.length > 8 ? row[8] : "EFFECTIVE")
+                .fileStorage(fileStorage)
+                .build();
     }
 
     private void processTestData(List<String[]> records, FileStorage fileStorage) {

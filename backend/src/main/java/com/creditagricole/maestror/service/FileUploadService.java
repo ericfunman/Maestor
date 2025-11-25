@@ -46,21 +46,25 @@ public class FileUploadService {
             fileStorage = fileStorageRepository.save(fileStorage);
             log.info("File uploaded successfully: {} (ID: {})", file.getOriginalFilename(), fileStorage.getId());
             
-            // Process file asynchronously
-            try {
-                fileProcessingService.processFile(fileStorage);
-            } catch (Exception e) {
-                log.error("Error processing file: {}", e.getMessage(), e);
-                fileStorage.setStatus("FAILED");
-                fileStorage.setErrorMessage(e.getMessage());
-                fileStorageRepository.save(fileStorage);
-            }
+            // Issue #9 - Extraire le traitement dans une methode separee
+            processFileWithErrorHandling(fileStorage);
             
             return buildResponse(fileStorage, "File uploaded successfully");
             
         } catch (IOException e) {
             log.error("Error uploading file: {}", e.getMessage(), e);
-            throw new RuntimeException("Failed to upload file: " + e.getMessage());
+            throw new IllegalStateException("Failed to upload file: " + e.getMessage(), e);
+        }
+    }
+    
+    private void processFileWithErrorHandling(FileStorage fileStorage) {
+        try {
+            fileProcessingService.processFile(fileStorage);
+        } catch (Exception e) {
+            log.error("Error processing file: {}", e.getMessage(), e);
+            fileStorage.setStatus("FAILED");
+            fileStorage.setErrorMessage(e.getMessage());
+            fileStorageRepository.save(fileStorage);
         }
     }
 

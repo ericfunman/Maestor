@@ -2,7 +2,6 @@ package com.creditagricole.maestror.service;
 
 import com.creditagricole.maestror.entity.FileStorage;
 import com.creditagricole.maestror.repository.FileStorageRepository;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
