@@ -32,7 +32,6 @@ class FileUploadServiceTest {
     @Test
     void testValidateFile_EmptyFile_ThrowsException() {
         when(mockFile.isEmpty()).thenReturn(true);
-        when(mockFile.getOriginalFilename()).thenReturn("test.csv");
 
         IllegalArgumentException exception = assertThrows(
             IllegalArgumentException.class,
@@ -46,7 +45,6 @@ class FileUploadServiceTest {
     void testValidateFile_InvalidExtension_ThrowsException() {
         when(mockFile.isEmpty()).thenReturn(false);
         when(mockFile.getOriginalFilename()).thenReturn("test.pdf");
-        when(mockFile.getSize()).thenReturn(1024L);
 
         IllegalArgumentException exception = assertThrows(
             IllegalArgumentException.class,
