@@ -1,0 +1,92 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:16-alpine
+    container_name: maestror-postgres
+    environment:
+      POSTGRES_DB: maestror_db
+      POSTGRES_USER: maestror_user
+      POSTGRES_PASSWORD: maestror_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./backend/src/main/resources/db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - maestror-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U maestror_user -d maestror_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Spring Boot Backend
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: maestror-backend
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/maestror_db
+      SPRING_DATASOURCE_USERNAME: maestror_user
+      SPRING_DATASOURCE_PASSWORD: maestror_password
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - maestror-network
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:8080/actuator/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+  # Angular Frontend
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: maestror-frontend
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend
+    networks:
+      - maestror-network
+
+  # SonarQube (optional - for code quality)
+  sonarqube:
+    image: sonarqube:community
+    container_name: maestror-sonarqube
+    environment:
+      SONAR_JDBC_URL: jdbc:postgresql://postgres:5432/sonarqube
+      SONAR_JDBC_USERNAME: maestror_user
+      SONAR_JDBC_PASSWORD: maestror_password
+    ports:
+      - "9000:9000"
+    depends_on:
+      - postgres
+    networks:
+      - maestror-network
+    volumes:
+      - sonarqube_data:/opt/sonarqube/data
+      - sonarqube_extensions:/opt/sonarqube/extensions
+      - sonarqube_logs:/opt/sonarqube/logs
+    profiles:
+      - with-sonar
+
+networks:
+  maestror-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  sonarqube_data:
+  sonarqube_extensions:
+  sonarqube_logs:
