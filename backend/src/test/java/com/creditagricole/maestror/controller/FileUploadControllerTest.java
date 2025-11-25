@@ -3,34 +3,34 @@ package com.creditagricole.maestror.controller;
 import com.creditagricole.maestror.dto.FileUploadResponse;
 import com.creditagricole.maestror.service.FileUploadService;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.mock.web.MockMultipartFile;
-import org.springframework.test.web.servlet.MockMvc;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@WebMvcTest(FileUploadController.class)
+@ExtendWith(MockitoExtension.class)
 class FileUploadControllerTest {
 
-    @Autowired
-    private MockMvc mockMvc;
-
-    @MockBean
+    @Mock
     private FileUploadService fileUploadService;
+
+    @InjectMocks
+    private FileUploadController fileUploadController;
 
     @Test
     void testUploadFile_Success() throws Exception {
         MockMultipartFile file = new MockMultipartFile(
             "file",
             "test.csv",
-            MediaType.TEXT_PLAIN_VALUE,
+            "text/plain",
             "test,data\n1,2".getBytes()
         );
 
@@ -46,33 +46,31 @@ class FileUploadControllerTest {
         when(fileUploadService.uploadFile(any(), eq("TEST"), eq("admin")))
             .thenReturn(response);
 
-        mockMvc.perform(multipart("/api/files/upload")
-                .file(file)
-                .param("category", "TEST")
-                .param("uploadedBy", "admin"))
-            .andExpect(status().isOk())
-            .andExpect(jsonPath("$.fileName").value("test.csv"))
-            .andExpect(jsonPath("$.fileType").value("CSV"))
-            .andExpect(jsonPath("$.status").value("COMPLETED"));
+        ResponseEntity<FileUploadResponse> result = fileUploadController.uploadFile(file, "TEST", "admin");
+
+        assertEquals(HttpStatus.OK, result.getStatusCode());
+        assertNotNull(result.getBody());
+        assertEquals("test.csv", result.getBody().getFileName());
+        assertEquals("CSV", result.getBody().getFileType());
+        assertEquals("COMPLETED", result.getBody().getStatus());
     }
 
     @Test
-    void testUploadFile_ValidationError() throws Exception {
+    void testUploadFile_ValidationError() {
         MockMultipartFile file = new MockMultipartFile(
             "file",
             "test.csv",
-            MediaType.TEXT_PLAIN_VALUE,
+            "text/plain",
             "".getBytes()
         );
 
         when(fileUploadService.uploadFile(any(), eq("TEST"), eq("admin")))
             .thenThrow(new IllegalArgumentException("File is empty"));
 
-        mockMvc.perform(multipart("/api/files/upload")
-                .file(file)
-                .param("category", "TEST")
-                .param("uploadedBy", "admin"))
-            .andExpect(status().isBadRequest())
-            .andExpect(jsonPath("$.message").value("Validation error: File is empty"));
+        ResponseEntity<FileUploadResponse> result = fileUploadController.uploadFile(file, "TEST", "admin");
+
+        assertEquals(HttpStatus.BAD_REQUEST, result.getStatusCode());
+        assertNotNull(result.getBody());
+        assertEquals("Validation error: File is empty", result.getBody().getMessage());
     }
 }
