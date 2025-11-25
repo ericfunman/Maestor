@@ -135,7 +135,6 @@ public class FileProcessingService {
             try {
                 String[] row = records.get(i);
                 
-                // Issue #6 - Utiliser constante
                 OperationalRiskReferential risk = OperationalRiskReferential.builder()
                         .riskCode(row[0])
                         .riskName(row[1])
@@ -261,7 +260,7 @@ public class FileProcessingService {
                 processed++;
                 
             } catch (Exception e) {
-                log.error("Error processing row {}: {}", i, e.getMessage());
+                log.error(ERROR_LOG_MESSAGE, i, e.getMessage());
                 failed++;
             }
         }

@@ -46,7 +46,11 @@ public class RiskCalculationService {
         int processed = 0;
         for (OperationalRiskReferential risk : activeRisks) {
             try {
-                calculateRiskForReferential(risk);
+                if (self != null) {
+                    self.calculateRiskForReferential(risk);
+                } else {
+                    calculateRiskForReferential(risk);
+                }
                 processed++;
             } catch (Exception e) {
                 log.error("Error calculating risk for referential {}: {}", risk.getRiskCode(), e.getMessage(), e);

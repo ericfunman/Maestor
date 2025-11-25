@@ -1,22 +1,87 @@
 ﻿{
-    "total":  20,
+    "total":  21,
     "p":  1,
     "ps":  100,
     "paging":  {
                    "pageIndex":  1,
                    "pageSize":  100,
-                   "total":  20
+                   "total":  21
                },
-    "effortTotal":  212,
-    "debtTotal":  212,
+    "effortTotal":  214,
+    "debtTotal":  214,
     "issues":  [
+                   {
+                       "key":  "AZq7bV8GOPLqMw4U4cn0",
+                       "rule":  "java:S1192",
+                       "severity":  "CRITICAL",
+                       "component":  "ericfunman_Maestor:src/main/java/com/creditagricole/maestror/service/RiskCalculationService.java",
+                       "project":  "ericfunman_Maestor",
+                       "line":  134,
+                       "hash":  "deb789ecf8969ab75648324053825a2c",
+                       "textRange":  {
+                                         "startLine":  134,
+                                         "endLine":  134,
+                                         "startOffset":  17,
+                                         "endOffset":  25
+                                     },
+                       "flows":  [
+                                     {
+                                         "locations":  [
+                                                           {
+                                                               "component":  "ericfunman_Maestor:src/main/java/com/creditagricole/maestror/service/RiskCalculationService.java",
+                                                               "textRange":  {
+                                                                                 "startLine":  142,
+                                                                                 "endLine":  142,
+                                                                                 "startOffset":  17,
+                                                                                 "endOffset":  25
+                                                                             },
+                                                               "msg":  "Duplication"
+                                                           }
+                                                       ]
+                                     },
+                                     {
+                                         "locations":  [
+                                                           {
+                                                               "component":  "ericfunman_Maestor:src/main/java/com/creditagricole/maestror/service/RiskCalculationService.java",
+                                                               "textRange":  {
+                                                                                 "startLine":  174,
+                                                                                 "endLine":  174,
+                                                                                 "startOffset":  19,
+                                                                                 "endOffset":  27
+                                                                             },
+                                                               "msg":  "Duplication"
+                                                           }
+                                                       ]
+                                     }
+                                 ],
+                       "status":  "OPEN",
+                       "message":  "Use already-defined constant \u0027RISK_LEVEL_MEDIUM\u0027 instead of duplicating its value here.",
+                       "effort":  "8min",
+                       "debt":  "8min",
+                       "tags":  [
+                                    "design"
+                                ],
+                       "creationDate":  "2025-11-25T14:31:14+0000",
+                       "updateDate":  "2025-11-25T14:31:14+0000",
+                       "type":  "CODE_SMELL",
+                       "organization":  "ericfunman",
+                       "cleanCodeAttribute":  "DISTINCT",
+                       "cleanCodeAttributeCategory":  "ADAPTABLE",
+                       "impacts":  [
+                                       {
+                                           "softwareQuality":  "MAINTAINABILITY",
+                                           "severity":  "HIGH"
+                                       }
+                                   ],
+                       "issueStatus":  "OPEN",
+                       "projectName":  "Maestror"
+                   },
                    {
                        "key":  "AZq6tjDScVVFjZ8tFe0W",
                        "rule":  "java:S1192",
                        "severity":  "CRITICAL",
                        "component":  "ericfunman_Maestor:src/main/java/com/creditagricole/maestror/service/FileProcessingService.java",
                        "project":  "ericfunman_Maestor",
-                       "line":  141,
                        "hash":  "23cd7ed9ec57b4cce20a132e7156fd64",
                        "textRange":  {
                                          "startLine":  141,
@@ -68,7 +133,8 @@
                                                        ]
                                      }
                                  ],
-                       "status":  "OPEN",
+                       "resolution":  "FIXED",
+                       "status":  "CLOSED",
                        "message":  "Define a constant instead of duplicating this literal \"MEDIUM\" 3 times.",
                        "effort":  "8min",
                        "debt":  "8min",
@@ -76,7 +142,8 @@
                                     "design"
                                 ],
                        "creationDate":  "2025-11-25T11:11:09+0000",
-                       "updateDate":  "2025-11-25T11:11:09+0000",
+                       "updateDate":  "2025-11-25T14:31:14+0000",
+                       "closeDate":  "2025-11-25T14:31:14+0000",
                        "type":  "CODE_SMELL",
                        "organization":  "ericfunman",
                        "cleanCodeAttribute":  "DISTINCT",
@@ -87,101 +154,7 @@
                                            "severity":  "HIGH"
                                        }
                                    ],
-                       "issueStatus":  "OPEN",
-                       "projectName":  "Maestror"
-                   },
-                   {
-                       "key":  "AZq6tjDScVVFjZ8tFe0X",
-                       "rule":  "java:S1192",
-                       "severity":  "CRITICAL",
-                       "component":  "ericfunman_Maestor:src/main/java/com/creditagricole/maestror/service/FileProcessingService.java",
-                       "project":  "ericfunman_Maestor",
-                       "line":  151,
-                       "hash":  "2471926ce50b4799eeaa368df6291360",
-                       "textRange":  {
-                                         "startLine":  151,
-                                         "endLine":  151,
-                                         "startOffset":  26,
-                                         "endOffset":  55
-                                     },
-                       "flows":  [
-                                     {
-                                         "locations":  [
-                                                           {
-                                                               "component":  "ericfunman_Maestor:src/main/java/com/creditagricole/maestror/service/FileProcessingService.java",
-                                                               "textRange":  {
-                                                                                 "startLine":  151,
-                                                                                 "endLine":  151,
-                                                                                 "startOffset":  26,
-                                                                                 "endOffset":  55
-                                                                             },
-                                                               "msg":  "Duplication"
-                                                           }
-                                                       ]
-                                     },
-                                     {
-                                         "locations":  [
-                                                           {
-                                                               "component":  "ericfunman_Maestor:src/main/java/com/creditagricole/maestror/service/FileProcessingService.java",
-                                                               "textRange":  {
-                                                                                 "startLine":  187,
-                                                                                 "endLine":  187,
-                                                                                 "startOffset":  26,
-                                                                                 "endOffset":  55
-                                                                             },
-                                                               "msg":  "Duplication"
-                                                           }
-                                                       ]
-                                     },
-                                     {
-                                         "locations":  [
-                                                           {
-                                                               "component":  "ericfunman_Maestor:src/main/java/com/creditagricole/maestror/service/FileProcessingService.java",
-                                                               "textRange":  {
-                                                                                 "startLine":  221,
-                                                                                 "endLine":  221,
-                                                                                 "startOffset":  26,
-                                                                                 "endOffset":  55
-                                                                             },
-                                                               "msg":  "Duplication"
-                                                           }
-                                                       ]
-                                     },
-                                     {
-                                         "locations":  [
-                                                           {
-                                                               "component":  "ericfunman_Maestor:src/main/java/com/creditagricole/maestror/service/FileProcessingService.java",
-                                                               "textRange":  {
-                                                                                 "startLine":  256,
-                                                                                 "endLine":  256,
-                                                                                 "startOffset":  26,
-                                                                                 "endOffset":  55
-                                                                             },
-                                                               "msg":  "Duplication"
-                                                           }
-                                                       ]
-                                     }
-                                 ],
-                       "status":  "OPEN",
-                       "message":  "Define a constant instead of duplicating this literal \"Error processing row {}: {}\" 4 times.",
-                       "effort":  "10min",
-                       "debt":  "10min",
-                       "tags":  [
-                                    "design"
-                                ],
-                       "creationDate":  "2025-11-25T11:11:09+0000",
-                       "updateDate":  "2025-11-25T11:11:09+0000",
-                       "type":  "CODE_SMELL",
-                       "organization":  "ericfunman",
-                       "cleanCodeAttribute":  "DISTINCT",
-                       "cleanCodeAttributeCategory":  "ADAPTABLE",
-                       "impacts":  [
-                                       {
-                                           "softwareQuality":  "MAINTAINABILITY",
-                                           "severity":  "HIGH"
-                                       }
-                                   ],
-                       "issueStatus":  "OPEN",
+                       "issueStatus":  "FIXED",
                        "projectName":  "Maestror"
                    },
                    {
@@ -190,7 +163,6 @@
                        "severity":  "CRITICAL",
                        "component":  "ericfunman_Maestor:src/main/java/com/creditagricole/maestror/service/FileProcessingService.java",
                        "project":  "ericfunman_Maestor",
-                       "line":  160,
                        "hash":  "03ea33154fbda5f8ff08e361b9382be2",
                        "textRange":  {
                                          "startLine":  160,
@@ -368,7 +340,8 @@
                                                        ]
                                      }
                                  ],
-                       "status":  "OPEN",
+                       "resolution":  "FIXED",
+                       "status":  "CLOSED",
                        "message":  "Refactor this method to reduce its Cognitive Complexity from 22 to the 15 allowed.",
                        "effort":  "12min",
                        "debt":  "12min",
@@ -377,7 +350,8 @@
                                     "brain-overload"
                                 ],
                        "creationDate":  "2025-11-25T11:11:09+0000",
-                       "updateDate":  "2025-11-25T11:11:09+0000",
+                       "updateDate":  "2025-11-25T14:31:14+0000",
+                       "closeDate":  "2025-11-25T14:31:14+0000",
                        "type":  "CODE_SMELL",
                        "organization":  "ericfunman",
                        "cleanCodeAttribute":  "FOCUSED",
@@ -388,7 +362,7 @@
                                            "severity":  "HIGH"
                                        }
                                    ],
-                       "issueStatus":  "OPEN",
+                       "issueStatus":  "FIXED",
                        "projectName":  "Maestror"
                    },
                    {
@@ -397,7 +371,6 @@
                        "severity":  "CRITICAL",
                        "component":  "ericfunman_Maestor:src/main/java/com/creditagricole/maestror/service/FileProcessingService.java",
                        "project":  "ericfunman_Maestor",
-                       "line":  196,
                        "hash":  "583cabcb41bdbc2006781e7edcf403c5",
                        "textRange":  {
                                          "startLine":  196,
@@ -533,7 +506,8 @@
                                                        ]
                                      }
                                  ],
-                       "status":  "OPEN",
+                       "resolution":  "FIXED",
+                       "status":  "CLOSED",
                        "message":  "Refactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.",
                        "effort":  "7min",
                        "debt":  "7min",
@@ -542,10 +516,50 @@
                                     "brain-overload"
                                 ],
                        "creationDate":  "2025-11-25T11:11:09+0000",
-                       "updateDate":  "2025-11-25T11:11:09+0000",
+                       "updateDate":  "2025-11-25T14:31:14+0000",
+                       "closeDate":  "2025-11-25T14:31:14+0000",
                        "type":  "CODE_SMELL",
                        "organization":  "ericfunman",
                        "cleanCodeAttribute":  "FOCUSED",
+                       "cleanCodeAttributeCategory":  "ADAPTABLE",
+                       "impacts":  [
+                                       {
+                                           "softwareQuality":  "MAINTAINABILITY",
+                                           "severity":  "HIGH"
+                                       }
+                                   ],
+                       "issueStatus":  "FIXED",
+                       "projectName":  "Maestror"
+                   },
+                   {
+                       "key":  "AZq6tjDScVVFjZ8tFe0X",
+                       "rule":  "java:S1192",
+                       "severity":  "CRITICAL",
+                       "component":  "ericfunman_Maestor:src/main/java/com/creditagricole/maestror/service/FileProcessingService.java",
+                       "project":  "ericfunman_Maestor",
+                       "line":  264,
+                       "hash":  "2471926ce50b4799eeaa368df6291360",
+                       "textRange":  {
+                                         "startLine":  264,
+                                         "endLine":  264,
+                                         "startOffset":  26,
+                                         "endOffset":  55
+                                     },
+                       "flows":  [
+
+                                 ],
+                       "status":  "OPEN",
+                       "message":  "Use already-defined constant \u0027ERROR_LOG_MESSAGE\u0027 instead of duplicating its value here.",
+                       "effort":  "4min",
+                       "debt":  "4min",
+                       "tags":  [
+                                    "design"
+                                ],
+                       "creationDate":  "2025-11-25T11:11:09+0000",
+                       "updateDate":  "2025-11-25T14:31:14+0000",
+                       "type":  "CODE_SMELL",
+                       "organization":  "ericfunman",
+                       "cleanCodeAttribute":  "DISTINCT",
                        "cleanCodeAttributeCategory":  "ADAPTABLE",
                        "impacts":  [
                                        {
@@ -562,7 +576,6 @@
                        "severity":  "MAJOR",
                        "component":  "ericfunman_Maestor:src/main/java/com/creditagricole/maestror/service/FileUploadService.java",
                        "project":  "ericfunman_Maestor",
-                       "line":  50,
                        "hash":  "80d5b17efc16ace990c07580fc3e85eb",
                        "textRange":  {
                                          "startLine":  50,
@@ -586,7 +599,8 @@
                                                        ]
                                      }
                                  ],
-                       "status":  "OPEN",
+                       "resolution":  "FIXED",
+                       "status":  "CLOSED",
                        "message":  "Extract this nested try block into a separate method.",
                        "effort":  "20min",
                        "debt":  "20min",
@@ -595,7 +609,8 @@
                                     "error-handling"
                                 ],
                        "creationDate":  "2025-11-25T11:11:09+0000",
-                       "updateDate":  "2025-11-25T11:11:09+0000",
+                       "updateDate":  "2025-11-25T14:31:14+0000",
+                       "closeDate":  "2025-11-25T14:31:14+0000",
                        "type":  "CODE_SMELL",
                        "organization":  "ericfunman",
                        "cleanCodeAttribute":  "CLEAR",
@@ -606,7 +621,7 @@
                                            "severity":  "MEDIUM"
                                        }
                                    ],
-                       "issueStatus":  "OPEN",
+                       "issueStatus":  "FIXED",
                        "projectName":  "Maestror"
                    },
                    {
@@ -615,7 +630,6 @@
                        "severity":  "MAJOR",
                        "component":  "ericfunman_Maestor:src/main/java/com/creditagricole/maestror/service/FileUploadService.java",
                        "project":  "ericfunman_Maestor",
-                       "line":  63,
                        "hash":  "55c10bd2009069aed12fe7932b252a67",
                        "textRange":  {
                                          "startLine":  63,
@@ -626,7 +640,8 @@
                        "flows":  [
 
                                  ],
-                       "status":  "OPEN",
+                       "resolution":  "FIXED",
+                       "status":  "CLOSED",
                        "message":  "Replace generic exceptions with specific library exceptions or a custom exception.",
                        "effort":  "20min",
                        "debt":  "20min",
@@ -636,7 +651,8 @@
                                     "error-handling"
                                 ],
                        "creationDate":  "2025-11-25T11:11:09+0000",
-                       "updateDate":  "2025-11-25T11:11:09+0000",
+                       "updateDate":  "2025-11-25T14:31:14+0000",
+                       "closeDate":  "2025-11-25T14:31:14+0000",
                        "type":  "CODE_SMELL",
                        "organization":  "ericfunman",
                        "cleanCodeAttribute":  "COMPLETE",
@@ -647,7 +663,7 @@
                                            "severity":  "MEDIUM"
                                        }
                                    ],
-                       "issueStatus":  "OPEN",
+                       "issueStatus":  "FIXED",
                        "projectName":  "Maestror"
                    },
                    {
@@ -656,11 +672,11 @@
                        "severity":  "CRITICAL",
                        "component":  "ericfunman_Maestor:src/main/java/com/creditagricole/maestror/service/RiskCalculationService.java",
                        "project":  "ericfunman_Maestor",
-                       "line":  39,
+                       "line":  49,
                        "hash":  "ccc00d1060b33c2514acb627a51ecd7e",
                        "textRange":  {
-                                         "startLine":  39,
-                                         "endLine":  39,
+                                         "startLine":  49,
+                                         "endLine":  49,
                                          "startOffset":  16,
                                          "endOffset":  49
                                      },
@@ -695,7 +711,6 @@
                        "severity":  "MINOR",
                        "component":  "ericfunman_Maestor:src/main/java/com/creditagricole/maestror/service/RiskCalculationService.java",
                        "project":  "ericfunman_Maestor",
-                       "line":  73,
                        "hash":  "28b2b2d2bdd911e8788a8178b061e0eb",
                        "textRange":  {
                                          "startLine":  73,
@@ -706,7 +721,8 @@
                        "flows":  [
 
                                  ],
-                       "status":  "OPEN",
+                       "resolution":  "FIXED",
+                       "status":  "CLOSED",
                        "message":  "Replace this lambda with method reference \u0027Objects::nonNull\u0027.",
                        "effort":  "2min",
                        "debt":  "2min",
@@ -714,7 +730,8 @@
                                     "java8"
                                 ],
                        "creationDate":  "2025-11-25T11:11:09+0000",
-                       "updateDate":  "2025-11-25T11:11:09+0000",
+                       "updateDate":  "2025-11-25T14:31:14+0000",
+                       "closeDate":  "2025-11-25T14:31:14+0000",
                        "type":  "CODE_SMELL",
                        "organization":  "ericfunman",
                        "cleanCodeAttribute":  "CLEAR",
@@ -725,7 +742,7 @@
                                            "severity":  "LOW"
                                        }
                                    ],
-                       "issueStatus":  "OPEN",
+                       "issueStatus":  "FIXED",
                        "projectName":  "Maestror"
                    },
                    {
@@ -734,7 +751,6 @@
                        "severity":  "MINOR",
                        "component":  "ericfunman_Maestor:src/main/java/com/creditagricole/maestror/service/RiskCalculationService.java",
                        "project":  "ericfunman_Maestor",
-                       "line":  118,
                        "hash":  "1d42c10a43689524f4410296f12dae3d",
                        "textRange":  {
                                          "startLine":  118,
@@ -745,7 +761,8 @@
                        "flows":  [
 
                                  ],
-                       "status":  "OPEN",
+                       "resolution":  "FIXED",
+                       "status":  "CLOSED",
                        "message":  "Cast one of the operands of this multiplication operation to a \"long\".",
                        "effort":  "5min",
                        "debt":  "5min",
@@ -755,7 +772,8 @@
                                     "overflow"
                                 ],
                        "creationDate":  "2025-11-25T11:11:09+0000",
-                       "updateDate":  "2025-11-25T11:11:09+0000",
+                       "updateDate":  "2025-11-25T14:31:14+0000",
+                       "closeDate":  "2025-11-25T14:31:14+0000",
                        "type":  "BUG",
                        "organization":  "ericfunman",
                        "cleanCodeAttribute":  "CLEAR",
@@ -766,7 +784,7 @@
                                            "severity":  "LOW"
                                        }
                                    ],
-                       "issueStatus":  "OPEN",
+                       "issueStatus":  "FIXED",
                        "projectName":  "Maestror"
                    },
                    {
@@ -775,7 +793,6 @@
                        "severity":  "CRITICAL",
                        "component":  "ericfunman_Maestor:src/main/java/com/creditagricole/maestror/service/RiskCalculationService.java",
                        "project":  "ericfunman_Maestor",
-                       "line":  121,
                        "hash":  "966f9c8040f3824d781440d1a95f9d08",
                        "textRange":  {
                                          "startLine":  121,
@@ -855,7 +872,8 @@
                                                        ]
                                      }
                                  ],
-                       "status":  "OPEN",
+                       "resolution":  "FIXED",
+                       "status":  "CLOSED",
                        "message":  "Define a constant instead of duplicating this literal \"MEDIUM\" 5 times.",
                        "effort":  "12min",
                        "debt":  "12min",
@@ -863,7 +881,8 @@
                                     "design"
                                 ],
                        "creationDate":  "2025-11-25T11:11:09+0000",
-                       "updateDate":  "2025-11-25T11:11:09+0000",
+                       "updateDate":  "2025-11-25T14:31:14+0000",
+                       "closeDate":  "2025-11-25T14:31:14+0000",
                        "type":  "CODE_SMELL",
                        "organization":  "ericfunman",
                        "cleanCodeAttribute":  "DISTINCT",
@@ -874,7 +893,7 @@
                                            "severity":  "HIGH"
                                        }
                                    ],
-                       "issueStatus":  "OPEN",
+                       "issueStatus":  "FIXED",
                        "projectName":  "Maestror"
                    },
                    {
@@ -883,7 +902,6 @@
                        "severity":  "MINOR",
                        "component":  "ericfunman_Maestor:src/main/java/com/creditagricole/maestror/service/RiskCalculationService.java",
                        "project":  "ericfunman_Maestor",
-                       "line":  138,
                        "hash":  "e221f3d9d805ed541cc39a1e1c96e7c7",
                        "textRange":  {
                                          "startLine":  138,
@@ -894,7 +912,8 @@
                        "flows":  [
 
                                  ],
-                       "status":  "OPEN",
+                       "resolution":  "FIXED",
+                       "status":  "CLOSED",
                        "message":  "Remove this use of \"divide\"; it is deprecated.",
                        "effort":  "15min",
                        "debt":  "15min",
@@ -904,7 +923,8 @@
                                     "obsolete"
                                 ],
                        "creationDate":  "2025-11-25T11:11:09+0000",
-                       "updateDate":  "2025-11-25T11:11:09+0000",
+                       "updateDate":  "2025-11-25T14:31:14+0000",
+                       "closeDate":  "2025-11-25T14:31:14+0000",
                        "type":  "CODE_SMELL",
                        "organization":  "ericfunman",
                        "cleanCodeAttribute":  "CONVENTIONAL",
@@ -915,7 +935,7 @@
                                            "severity":  "LOW"
                                        }
                                    ],
-                       "issueStatus":  "OPEN",
+                       "issueStatus":  "FIXED",
                        "projectName":  "Maestror"
                    },
                    {
@@ -924,7 +944,6 @@
                        "severity":  "MINOR",
                        "component":  "ericfunman_Maestor:src/main/java/com/creditagricole/maestror/service/RiskCalculationService.java",
                        "project":  "ericfunman_Maestor",
-                       "line":  138,
                        "hash":  "e221f3d9d805ed541cc39a1e1c96e7c7",
                        "textRange":  {
                                          "startLine":  138,
@@ -935,7 +954,8 @@
                        "flows":  [
 
                                  ],
-                       "status":  "OPEN",
+                       "resolution":  "FIXED",
+                       "status":  "CLOSED",
                        "message":  "Remove this use of \"ROUND_HALF_UP\"; it is deprecated.",
                        "effort":  "15min",
                        "debt":  "15min",
@@ -945,7 +965,8 @@
                                     "obsolete"
                                 ],
                        "creationDate":  "2025-11-25T11:11:09+0000",
-                       "updateDate":  "2025-11-25T11:11:09+0000",
+                       "updateDate":  "2025-11-25T14:31:14+0000",
+                       "closeDate":  "2025-11-25T14:31:14+0000",
                        "type":  "CODE_SMELL",
                        "organization":  "ericfunman",
                        "cleanCodeAttribute":  "CONVENTIONAL",
@@ -956,7 +977,7 @@
                                            "severity":  "LOW"
                                        }
                                    ],
-                       "issueStatus":  "OPEN",
+                       "issueStatus":  "FIXED",
                        "projectName":  "Maestror"
                    },
                    {
@@ -965,7 +986,6 @@
                        "severity":  "MINOR",
                        "component":  "ericfunman_Maestor:src/main/java/com/creditagricole/maestror/service/RiskCalculationService.java",
                        "project":  "ericfunman_Maestor",
-                       "line":  142,
                        "hash":  "97d69a6999a35bf91cadd6d0d602236d",
                        "textRange":  {
                                          "startLine":  142,
@@ -976,7 +996,8 @@
                        "flows":  [
 
                                  ],
-                       "status":  "OPEN",
+                       "resolution":  "FIXED",
+                       "status":  "CLOSED",
                        "message":  "Remove this use of \"divide\"; it is deprecated.",
                        "effort":  "15min",
                        "debt":  "15min",
@@ -986,7 +1007,8 @@
                                     "obsolete"
                                 ],
                        "creationDate":  "2025-11-25T11:11:09+0000",
-                       "updateDate":  "2025-11-25T11:11:09+0000",
+                       "updateDate":  "2025-11-25T14:31:14+0000",
+                       "closeDate":  "2025-11-25T14:31:14+0000",
                        "type":  "CODE_SMELL",
                        "organization":  "ericfunman",
                        "cleanCodeAttribute":  "CONVENTIONAL",
@@ -997,7 +1019,7 @@
                                            "severity":  "LOW"
                                        }
                                    ],
-                       "issueStatus":  "OPEN",
+                       "issueStatus":  "FIXED",
                        "projectName":  "Maestror"
                    },
                    {
@@ -1006,7 +1028,6 @@
                        "severity":  "MINOR",
                        "component":  "ericfunman_Maestor:src/main/java/com/creditagricole/maestror/service/RiskCalculationService.java",
                        "project":  "ericfunman_Maestor",
-                       "line":  142,
                        "hash":  "97d69a6999a35bf91cadd6d0d602236d",
                        "textRange":  {
                                          "startLine":  142,
@@ -1017,7 +1038,8 @@
                        "flows":  [
 
                                  ],
-                       "status":  "OPEN",
+                       "resolution":  "FIXED",
+                       "status":  "CLOSED",
                        "message":  "Remove this use of \"ROUND_HALF_UP\"; it is deprecated.",
                        "effort":  "15min",
                        "debt":  "15min",
@@ -1027,7 +1049,8 @@
                                     "obsolete"
                                 ],
                        "creationDate":  "2025-11-25T11:11:09+0000",
-                       "updateDate":  "2025-11-25T11:11:09+0000",
+                       "updateDate":  "2025-11-25T14:31:14+0000",
+                       "closeDate":  "2025-11-25T14:31:14+0000",
                        "type":  "CODE_SMELL",
                        "organization":  "ericfunman",
                        "cleanCodeAttribute":  "CONVENTIONAL",
@@ -1038,7 +1061,7 @@
                                            "severity":  "LOW"
                                        }
                                    ],
-                       "issueStatus":  "OPEN",
+                       "issueStatus":  "FIXED",
                        "projectName":  "Maestror"
                    },
                    {
@@ -1047,7 +1070,6 @@
                        "severity":  "MINOR",
                        "component":  "ericfunman_Maestor:src/main/java/com/creditagricole/maestror/service/RiskCalculationService.java",
                        "project":  "ericfunman_Maestor",
-                       "line":  151,
                        "hash":  "c1d8d7b9b7a830946d57ed385f6b5eff",
                        "textRange":  {
                                          "startLine":  151,
@@ -1058,7 +1080,8 @@
                        "flows":  [
 
                                  ],
-                       "status":  "OPEN",
+                       "resolution":  "FIXED",
+                       "status":  "CLOSED",
                        "message":  "Remove this use of \"setScale\"; it is deprecated.",
                        "effort":  "15min",
                        "debt":  "15min",
@@ -1068,7 +1091,8 @@
                                     "obsolete"
                                 ],
                        "creationDate":  "2025-11-25T11:11:09+0000",
-                       "updateDate":  "2025-11-25T11:11:09+0000",
+                       "updateDate":  "2025-11-25T14:31:14+0000",
+                       "closeDate":  "2025-11-25T14:31:14+0000",
                        "type":  "CODE_SMELL",
                        "organization":  "ericfunman",
                        "cleanCodeAttribute":  "CONVENTIONAL",
@@ -1079,7 +1103,7 @@
                                            "severity":  "LOW"
                                        }
                                    ],
-                       "issueStatus":  "OPEN",
+                       "issueStatus":  "FIXED",
                        "projectName":  "Maestror"
                    },
                    {
@@ -1088,7 +1112,6 @@
                        "severity":  "MINOR",
                        "component":  "ericfunman_Maestor:src/main/java/com/creditagricole/maestror/service/RiskCalculationService.java",
                        "project":  "ericfunman_Maestor",
-                       "line":  151,
                        "hash":  "c1d8d7b9b7a830946d57ed385f6b5eff",
                        "textRange":  {
                                          "startLine":  151,
@@ -1099,7 +1122,8 @@
                        "flows":  [
 
                                  ],
-                       "status":  "OPEN",
+                       "resolution":  "FIXED",
+                       "status":  "CLOSED",
                        "message":  "Remove this use of \"ROUND_HALF_UP\"; it is deprecated.",
                        "effort":  "15min",
                        "debt":  "15min",
@@ -1109,7 +1133,8 @@
                                     "obsolete"
                                 ],
                        "creationDate":  "2025-11-25T11:11:09+0000",
-                       "updateDate":  "2025-11-25T11:11:09+0000",
+                       "updateDate":  "2025-11-25T14:31:14+0000",
+                       "closeDate":  "2025-11-25T14:31:14+0000",
                        "type":  "CODE_SMELL",
                        "organization":  "ericfunman",
                        "cleanCodeAttribute":  "CONVENTIONAL",
@@ -1120,7 +1145,7 @@
                                            "severity":  "LOW"
                                        }
                                    ],
-                       "issueStatus":  "OPEN",
+                       "issueStatus":  "FIXED",
                        "projectName":  "Maestror"
                    },
                    {
@@ -1129,13 +1154,13 @@
                        "severity":  "CRITICAL",
                        "component":  "ericfunman_Maestor:src/main/java/com/creditagricole/maestror/service/RiskCalculationService.java",
                        "project":  "ericfunman_Maestor",
-                       "line":  197,
+                       "line":  213,
                        "hash":  "ccc00d1060b33c2514acb627a51ecd7e",
                        "textRange":  {
-                                         "startLine":  197,
-                                         "endLine":  197,
-                                         "startOffset":  12,
-                                         "endOffset":  45
+                                         "startLine":  213,
+                                         "endLine":  213,
+                                         "startOffset":  16,
+                                         "endOffset":  49
                                      },
                        "flows":  [
 
@@ -1168,7 +1193,6 @@
                        "severity":  "BLOCKER",
                        "component":  "ericfunman_Maestor:src/test/java/com/creditagricole/maestror/MaestrorApplicationTests.java",
                        "project":  "ericfunman_Maestor",
-                       "line":  8,
                        "hash":  "9da319abd9f20a8cf2db6edcaf58d7f1",
                        "textRange":  {
                                          "startLine":  8,
@@ -1179,7 +1203,8 @@
                        "flows":  [
 
                                  ],
-                       "status":  "OPEN",
+                       "resolution":  "FIXED",
+                       "status":  "CLOSED",
                        "message":  "Add at least one assertion to this test case.",
                        "effort":  "10min",
                        "debt":  "10min",
@@ -1188,7 +1213,8 @@
                                     "tests"
                                 ],
                        "creationDate":  "2025-11-25T11:11:09+0000",
-                       "updateDate":  "2025-11-25T11:11:09+0000",
+                       "updateDate":  "2025-11-25T14:31:14+0000",
+                       "closeDate":  "2025-11-25T14:31:14+0000",
                        "type":  "CODE_SMELL",
                        "organization":  "ericfunman",
                        "cleanCodeAttribute":  "TESTED",
@@ -1199,7 +1225,7 @@
                                            "severity":  "BLOCKER"
                                        }
                                    ],
-                       "issueStatus":  "OPEN",
+                       "issueStatus":  "FIXED",
                        "projectName":  "Maestror"
                    },
                    {
@@ -1208,7 +1234,6 @@
                        "severity":  "MINOR",
                        "component":  "ericfunman_Maestor:src/test/java/com/creditagricole/maestror/controller/FileUploadControllerTest.java",
                        "project":  "ericfunman_Maestor",
-                       "line":  29,
                        "hash":  "ae7d393bae8169e4d6ebaa27910880ef",
                        "textRange":  {
                                          "startLine":  29,
@@ -1219,7 +1244,8 @@
                        "flows":  [
 
                                  ],
-                       "status":  "OPEN",
+                       "resolution":  "FIXED",
+                       "status":  "CLOSED",
                        "message":  "Remove the declaration of thrown exception \u0027java.lang.Exception\u0027, as it cannot be thrown from method\u0027s body.",
                        "effort":  "5min",
                        "debt":  "5min",
@@ -1230,7 +1256,8 @@
                                     "unused"
                                 ],
                        "creationDate":  "2025-11-25T11:11:09+0000",
-                       "updateDate":  "2025-11-25T11:11:09+0000",
+                       "updateDate":  "2025-11-25T14:31:14+0000",
+                       "closeDate":  "2025-11-25T14:31:14+0000",
                        "type":  "CODE_SMELL",
                        "organization":  "ericfunman",
                        "cleanCodeAttribute":  "CLEAR",
@@ -1241,7 +1268,7 @@
                                            "severity":  "LOW"
                                        }
                                    ],
-                       "issueStatus":  "OPEN",
+                       "issueStatus":  "FIXED",
                        "projectName":  "Maestror"
                    },
                    {
@@ -1250,7 +1277,6 @@
                        "severity":  "MINOR",
                        "component":  "ericfunman_Maestor:src/test/java/com/creditagricole/maestror/service/FileUploadServiceTest.java",
                        "project":  "ericfunman_Maestor",
-                       "line":  5,
                        "hash":  "b9561e429fa8cbdfce2f08964c4f4d10",
                        "textRange":  {
                                          "startLine":  5,
@@ -1261,7 +1287,8 @@
                        "flows":  [
 
                                  ],
-                       "status":  "OPEN",
+                       "resolution":  "FIXED",
+                       "status":  "CLOSED",
                        "message":  "Remove this unused import \u0027org.junit.jupiter.api.BeforeEach\u0027.",
                        "effort":  "1min",
                        "debt":  "1min",
@@ -1269,7 +1296,8 @@
                                     "unused"
                                 ],
                        "creationDate":  "2025-11-25T11:11:09+0000",
-                       "updateDate":  "2025-11-25T11:11:09+0000",
+                       "updateDate":  "2025-11-25T14:31:14+0000",
+                       "closeDate":  "2025-11-25T14:31:14+0000",
                        "type":  "CODE_SMELL",
                        "organization":  "ericfunman",
                        "cleanCodeAttribute":  "CLEAR",
@@ -1280,7 +1308,7 @@
                                            "severity":  "LOW"
                                        }
                                    ],
-                       "issueStatus":  "OPEN",
+                       "issueStatus":  "FIXED",
                        "projectName":  "Maestror"
                    }
                ],
