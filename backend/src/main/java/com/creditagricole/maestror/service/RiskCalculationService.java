@@ -46,11 +46,7 @@ public class RiskCalculationService {
         int processed = 0;
         for (OperationalRiskReferential risk : activeRisks) {
             try {
-                if (self != null) {
-                    self.calculateRiskForReferential(risk);
-                } else {
-                    calculateRiskForReferential(risk);
-                }
+                self.calculateRiskForReferential(risk);
                 processed++;
             } catch (Exception e) {
                 log.error("Error calculating risk for referential {}: {}", risk.getRiskCode(), e.getMessage(), e);
@@ -143,7 +139,7 @@ public class RiskCalculationService {
         // Probability level multiplier - Issue #3 utiliser constante
         BigDecimal probabilityMultiplier = switch (probabilityLevel != null ? probabilityLevel : RISK_LEVEL_MEDIUM) {
             case "HIGH" -> BigDecimal.valueOf(1.5);
-            case "MEDIUM" -> BigDecimal.ONE;
+            case RISK_LEVEL_MEDIUM -> BigDecimal.ONE;
             case "LOW" -> BigDecimal.valueOf(0.5);
             default -> BigDecimal.ONE;
         };
@@ -210,12 +206,8 @@ public class RiskCalculationService {
         List<OperationalRiskReferential> activeRisks = riskReferentialRepository.findByActive(true);
         
         for (OperationalRiskReferential risk : activeRisks) {
-            // Appeler via self si disponible pour respecter les transactions
-            if (self != null) {
-                self.calculateRiskForReferential(risk);
-            } else {
-                calculateRiskForReferential(risk);
-            }
+            // Appeler via self pour respecter les transactions
+            self.calculateRiskForReferential(risk);
         }
     }
     

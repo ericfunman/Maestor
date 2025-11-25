@@ -1,5 +1,5 @@
 ﻿RAPPORT SONARCLOUD - MAESTROR
-Date: 2025-11-25 15:35:26
+Date: 2025-11-25 15:46:14
 TOTAL: 21 issues
 
 ISSUE #1 - [BLOCKER] CODE_SMELL
@@ -12,7 +12,7 @@ ISSUE #2 - [CRITICAL] CODE_SMELL
 Regle: java:S6809
 Message: Call transactional methods via an injected dependency instead of directly via 'this'.
 Fichier: src/main/java/com/creditagricole/maestror/service/RiskCalculationService.java
-Ligne: 49
+Ligne: 52
 
 ISSUE #3 - [CRITICAL] CODE_SMELL
 Regle: java:S1192
@@ -24,13 +24,13 @@ ISSUE #4 - [CRITICAL] CODE_SMELL
 Regle: java:S6809
 Message: Call transactional methods via an injected dependency instead of directly via 'this'.
 Fichier: src/main/java/com/creditagricole/maestror/service/RiskCalculationService.java
-Ligne: 213
+Ligne: 217
 
 ISSUE #5 - [CRITICAL] CODE_SMELL
 Regle: java:S1192
 Message: Use already-defined constant 'ERROR_LOG_MESSAGE' instead of duplicating its value here.
 Fichier: src/main/java/com/creditagricole/maestror/service/FileProcessingService.java
-Ligne: 264
+Ligne: 
 
 ISSUE #6 - [CRITICAL] CODE_SMELL
 Regle: java:S1192
@@ -42,7 +42,7 @@ ISSUE #7 - [CRITICAL] CODE_SMELL
 Regle: java:S1192
 Message: Use already-defined constant 'RISK_LEVEL_MEDIUM' instead of duplicating its value here.
 Fichier: src/main/java/com/creditagricole/maestror/service/RiskCalculationService.java
-Ligne: 134
+Ligne: 138
 
 ISSUE #8 - [CRITICAL] CODE_SMELL
 Regle: java:S3776

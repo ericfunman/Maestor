@@ -16,11 +16,11 @@
                        "severity":  "CRITICAL",
                        "component":  "ericfunman_Maestor:src/main/java/com/creditagricole/maestror/service/RiskCalculationService.java",
                        "project":  "ericfunman_Maestor",
-                       "line":  134,
+                       "line":  138,
                        "hash":  "deb789ecf8969ab75648324053825a2c",
                        "textRange":  {
-                                         "startLine":  134,
-                                         "endLine":  134,
+                                         "startLine":  138,
+                                         "endLine":  138,
                                          "startOffset":  17,
                                          "endOffset":  25
                                      },
@@ -30,8 +30,8 @@
                                                            {
                                                                "component":  "ericfunman_Maestor:src/main/java/com/creditagricole/maestror/service/RiskCalculationService.java",
                                                                "textRange":  {
-                                                                                 "startLine":  142,
-                                                                                 "endLine":  142,
+                                                                                 "startLine":  146,
+                                                                                 "endLine":  146,
                                                                                  "startOffset":  17,
                                                                                  "endOffset":  25
                                                                              },
@@ -44,8 +44,8 @@
                                                            {
                                                                "component":  "ericfunman_Maestor:src/main/java/com/creditagricole/maestror/service/RiskCalculationService.java",
                                                                "textRange":  {
-                                                                                 "startLine":  174,
-                                                                                 "endLine":  174,
+                                                                                 "startLine":  178,
+                                                                                 "endLine":  178,
                                                                                  "startOffset":  19,
                                                                                  "endOffset":  27
                                                                              },
@@ -537,7 +537,6 @@
                        "severity":  "CRITICAL",
                        "component":  "ericfunman_Maestor:src/main/java/com/creditagricole/maestror/service/FileProcessingService.java",
                        "project":  "ericfunman_Maestor",
-                       "line":  264,
                        "hash":  "2471926ce50b4799eeaa368df6291360",
                        "textRange":  {
                                          "startLine":  264,
@@ -548,7 +547,8 @@
                        "flows":  [
 
                                  ],
-                       "status":  "OPEN",
+                       "resolution":  "FIXED",
+                       "status":  "CLOSED",
                        "message":  "Use already-defined constant \u0027ERROR_LOG_MESSAGE\u0027 instead of duplicating its value here.",
                        "effort":  "4min",
                        "debt":  "4min",
@@ -556,7 +556,8 @@
                                     "design"
                                 ],
                        "creationDate":  "2025-11-25T11:11:09+0000",
-                       "updateDate":  "2025-11-25T14:31:14+0000",
+                       "updateDate":  "2025-11-25T14:40:24+0000",
+                       "closeDate":  "2025-11-25T14:40:24+0000",
                        "type":  "CODE_SMELL",
                        "organization":  "ericfunman",
                        "cleanCodeAttribute":  "DISTINCT",
@@ -567,7 +568,7 @@
                                            "severity":  "HIGH"
                                        }
                                    ],
-                       "issueStatus":  "OPEN",
+                       "issueStatus":  "FIXED",
                        "projectName":  "Maestror"
                    },
                    {
@@ -672,13 +673,13 @@
                        "severity":  "CRITICAL",
                        "component":  "ericfunman_Maestor:src/main/java/com/creditagricole/maestror/service/RiskCalculationService.java",
                        "project":  "ericfunman_Maestor",
-                       "line":  49,
+                       "line":  52,
                        "hash":  "ccc00d1060b33c2514acb627a51ecd7e",
                        "textRange":  {
-                                         "startLine":  49,
-                                         "endLine":  49,
-                                         "startOffset":  16,
-                                         "endOffset":  49
+                                         "startLine":  52,
+                                         "endLine":  52,
+                                         "startOffset":  20,
+                                         "endOffset":  53
                                      },
                        "flows":  [
 
@@ -1154,11 +1155,11 @@
                        "severity":  "CRITICAL",
                        "component":  "ericfunman_Maestor:src/main/java/com/creditagricole/maestror/service/RiskCalculationService.java",
                        "project":  "ericfunman_Maestor",
-                       "line":  213,
+                       "line":  217,
                        "hash":  "ccc00d1060b33c2514acb627a51ecd7e",
                        "textRange":  {
-                                         "startLine":  213,
-                                         "endLine":  213,
+                                         "startLine":  217,
+                                         "endLine":  217,
                                          "startOffset":  16,
                                          "endOffset":  49
                                      },
