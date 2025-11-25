@@ -171,7 +171,7 @@ public class RiskCalculationService {
         } else if (score.compareTo(BigDecimal.valueOf(50)) >= 0) {
             return "HIGH";
         } else if (score.compareTo(BigDecimal.valueOf(20)) >= 0) {
-            return "MEDIUM";
+            return RISK_LEVEL_MEDIUM;
         } else {
             return "LOW";
         }
