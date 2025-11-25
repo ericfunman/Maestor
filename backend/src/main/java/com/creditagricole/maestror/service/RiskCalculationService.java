@@ -131,7 +131,7 @@ public class RiskCalculationService {
         // Impact level multiplier - Issue #3 utiliser constante
         BigDecimal impactMultiplier = switch (impactLevel != null ? impactLevel : RISK_LEVEL_MEDIUM) {
             case "HIGH" -> BigDecimal.valueOf(1.5);
-            case "MEDIUM" -> BigDecimal.ONE;
+            case RISK_LEVEL_MEDIUM -> BigDecimal.ONE;
             case "LOW" -> BigDecimal.valueOf(0.5);
             default -> BigDecimal.ONE;
         };

@@ -5,7 +5,8 @@
 param(
     [switch]$Fetch,
     [switch]$Fix,
-    [int]$IssueNumber = 0
+    [int]$IssueNumber = 0,
+    [string]$Commit = ""
 )
 
 $SONAR_PROJECT_KEY = "ericfunman_Maestor"
@@ -34,9 +35,13 @@ function Get-SonarToken {
 }
 
 function Get-SonarIssues {
-    param([string]$Token)
+    param([string]$Token, [string]$CommitSha)
     
     Write-ColorOutput "Cyan" "`n=== Recuperation des issues SonarCloud ===`n"
+    
+    if ($CommitSha) {
+        Write-ColorOutput "Yellow" "Commit SHA: $CommitSha"
+    }
     
     $headers = @{}
     if ($Token) {
@@ -45,7 +50,27 @@ function Get-SonarIssues {
     }
     
     try {
-        $response = Invoke-RestMethod -Uri "$API_URL/issues/search?componentKeys=$SONAR_PROJECT_KEY&organization=$SONAR_ORGANIZATION&ps=100" -Headers $headers -Method Get
+        # Construction de l'URL avec paramètres
+        $apiUrl = "$API_URL/issues/search?componentKeys=$SONAR_PROJECT_KEY&organization=$SONAR_ORGANIZATION&ps=100&resolved=false"
+        
+        # Récupérer d'abord les informations de la dernière analyse
+        if ($CommitSha) {
+            $analysisUrl = "$API_URL/project_analyses/search?project=$SONAR_PROJECT_KEY&ps=10"
+            $analysisResponse = Invoke-RestMethod -Uri $analysisUrl -Headers $headers -Method Get
+            
+            $targetAnalysis = $analysisResponse.analyses | Where-Object { $_.revision -eq $CommitSha } | Select-Object -First 1
+            
+            if ($targetAnalysis) {
+                Write-ColorOutput "Green" "Analyse trouvee pour le commit $CommitSha (date: $($targetAnalysis.date))`n"
+                # Filtrer les issues depuis cette analyse
+                $apiUrl += "&sinceLeakPeriod=true"
+            } else {
+                Write-ColorOutput "Yellow" "Aucune analyse trouvee pour le commit $CommitSha"
+                Write-ColorOutput "Yellow" "Dernier commit analyse: $($analysisResponse.analyses[0].revision)`n"
+            }
+        }
+        
+        $response = Invoke-RestMethod -Uri $apiUrl -Headers $headers -Method Get
         
         Write-ColorOutput "Green" "Nombre total d'issues: $($response.total)"
         Write-ColorOutput "Green" "Issues recuperees: $($response.issues.Count)`n"
@@ -164,7 +189,7 @@ function Show-Menu {
 Write-ColorOutput "Green" "ANALYSE SONARCLOUD - MAESTROR"
 
 $token = Get-SonarToken
-$issues = Get-SonarIssues -Token $token
+$issues = Get-SonarIssues -Token $token -CommitSha $Commit
 
 if ($issues.Count -eq 0) {
     Write-ColorOutput "Yellow" "Aucune issue trouvee"
