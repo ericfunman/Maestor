@@ -44,10 +44,9 @@ public class ExcelSchemaReader {
             // Parcourir les lignes (en ignorant l'en-tête)
             for (int i = 1; i <= sheet.getLastRowNum(); i++) {
                 Row row = sheet.getRow(i);
-                if (row == null) continue;
-                
-                // Vérifier si la ligne est vide
-                if (isRowEmpty(row)) continue;
+                if (row == null || isRowEmpty(row)) {
+                    continue;
+                }
                 
                 String nomTable = getCellValue(row.getCell(COL_NOM_TABLE));
                 String nomChamp = getCellValue(row.getCell(COL_NOM_CHAMP));

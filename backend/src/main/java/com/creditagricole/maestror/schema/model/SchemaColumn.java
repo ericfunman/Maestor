@@ -13,6 +13,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class SchemaColumn {
+    private static final String TYPE_VARCHAR = "VARCHAR";
+    private static final String TYPE_SERIAL = "SERIAL";
+    private static final String TYPE_BIGSERIAL = "BIGSERIAL";
+    private static final String TYPE_NUMERIC = "NUMERIC";
+    
     private String nomChamp;           // NOM_CHAMP
     private String typeChamps;         // TYPE_CHAMPS (VARCHAR, INTEGER, DECIMAL, DATE, etc.)
     private String tailleChamps;       // TAILLE_CHAMPS (255, 15,2, etc.)
@@ -32,21 +37,19 @@ public class SchemaColumn {
         // Type et taille - mapper les types spéciaux
         String mappedType = mapType(typeChamps);
         
-        if ("VARCHAR".equalsIgnoreCase(mappedType) || "CHAR".equalsIgnoreCase(mappedType)) {
+        if (TYPE_VARCHAR.equalsIgnoreCase(mappedType) || "CHAR".equalsIgnoreCase(mappedType)) {
             ddl.append(mappedType).append("(").append(tailleChamps).append(")");
-        } else if ("DECIMAL".equalsIgnoreCase(mappedType) || "NUMERIC".equalsIgnoreCase(mappedType)) {
+        } else if ("DECIMAL".equalsIgnoreCase(mappedType) || TYPE_NUMERIC.equalsIgnoreCase(mappedType)) {
             ddl.append(mappedType).append("(").append(tailleChamps).append(")");
-        } else if ("SERIAL".equalsIgnoreCase(mappedType) || "BIGSERIAL".equalsIgnoreCase(mappedType)) {
+        } else if (TYPE_SERIAL.equalsIgnoreCase(mappedType) || TYPE_BIGSERIAL.equalsIgnoreCase(mappedType)) {
             ddl.append(mappedType);
         } else {
             ddl.append(mappedType);
         }
         
-        // Clé primaire
-        if (clePrimaire) {
-            if (!("SERIAL".equalsIgnoreCase(mappedType) || "BIGSERIAL".equalsIgnoreCase(mappedType))) {
-                ddl.append(" PRIMARY KEY");
-            }
+        // Clé primaire (sauf si SERIAL ou BIGSERIAL qui impliquent déjà un auto-increment)
+        if (clePrimaire && !(TYPE_SERIAL.equalsIgnoreCase(mappedType) || TYPE_BIGSERIAL.equalsIgnoreCase(mappedType))) {
+            ddl.append(" PRIMARY KEY");
         }
         
         // Contrainte NOT NULL par défaut sauf pour PK et FK
@@ -62,14 +65,14 @@ public class SchemaColumn {
      */
     private String mapType(String type) {
         if (type == null || type.isEmpty()) {
-            return "VARCHAR";
+            return TYPE_VARCHAR;
         }
         return switch (type.toUpperCase()) {
-            case "ID", "INT", "INTEGER" -> "SERIAL";
-            case "VARCHAR2" -> "VARCHAR";
+            case "ID", "INT", "INTEGER" -> TYPE_SERIAL;
+            case "VARCHAR2" -> TYPE_VARCHAR;
             case "DATE" -> "TIMESTAMP";
-            case "DECIMAL" -> "NUMERIC";
-            case "BIGINT" -> "BIGSERIAL";
+            case "DECIMAL" -> TYPE_NUMERIC;
+            case "BIGINT" -> TYPE_BIGSERIAL;
             case "TEXT" -> "TEXT";
             case "BOOLEAN", "BOOL" -> "BOOLEAN";
             default -> type.toUpperCase();

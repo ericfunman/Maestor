@@ -56,7 +56,9 @@ public class ExcelModelParser {
             // Sauter la ligne d'en-tête
             for (int rowNum = HEADER_ROW + 1; rowNum <= sheet.getLastRowNum(); rowNum++) {
                 Row row = sheet.getRow(rowNum);
-                if (row == null) continue;
+                if (row == null) {
+                    continue;
+                }
 
                 String tableName = getCellValue(row, COL_TABLE_NAME);
                 if (tableName == null || tableName.isEmpty()) {

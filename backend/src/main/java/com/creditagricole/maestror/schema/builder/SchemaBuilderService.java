@@ -25,17 +25,19 @@ import java.util.List;
 @Service
 public class SchemaBuilderService {
     
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
-    
-    @Autowired
-    private ExcelSchemaReader excelSchemaReader;
+    private final JdbcTemplate jdbcTemplate;
+    private final ExcelSchemaReader excelSchemaReader;
     
     @Value("${maestror.schema.excel-path:Modeles_Mappings.xlsx}")
     private String excelPath;
     
     @Value("${maestror.schema.auto-build:true}")
     private boolean autoBuild;
+    
+    public SchemaBuilderService(JdbcTemplate jdbcTemplate, ExcelSchemaReader excelSchemaReader) {
+        this.jdbcTemplate = jdbcTemplate;
+        this.excelSchemaReader = excelSchemaReader;
+    }
     
     /**
      * Construit le schéma au démarrage de l'application
@@ -124,8 +126,8 @@ public class SchemaBuilderService {
         try {
             Boolean exists = jdbcTemplate.queryForObject(
                 "SELECT EXISTS(SELECT 1 FROM information_schema.tables WHERE table_name = ?)",
-                new Object[]{tableName},
-                Boolean.class
+                Boolean.class,
+                tableName
             );
             return exists != null && exists;
         } catch (Exception e) {

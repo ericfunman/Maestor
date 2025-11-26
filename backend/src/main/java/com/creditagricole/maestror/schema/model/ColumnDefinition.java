@@ -13,6 +13,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ColumnDefinition {
+    private static final String TYPE_VARCHAR = "VARCHAR";
+    private static final String TYPE_NUMERIC = "NUMERIC";
+    private static final String TYPE_DATE = "Date";
+    private static final String TYPE_DECIMAL = "DECIMAL";
+    
     private String columnName;
     private String dataType;
     private String size;
@@ -31,10 +36,8 @@ public class ColumnDefinition {
         sql.append(mapPostgreSQLType(dataType));
 
         // Taille si applicable
-        if (size != null && !size.isEmpty() && !dataType.equalsIgnoreCase("Date")) {
-            if (dataType.equalsIgnoreCase("VARCHAR2")) {
-                sql.append("(").append(size).append(")");
-            } else if (dataType.equalsIgnoreCase("DECIMAL") || dataType.equalsIgnoreCase("NUMERIC")) {
+        if (size != null && !size.isEmpty() && !dataType.equalsIgnoreCase(TYPE_DATE)) {
+            if (dataType.equalsIgnoreCase("VARCHAR2") || dataType.equalsIgnoreCase(TYPE_DECIMAL) || dataType.equalsIgnoreCase(TYPE_NUMERIC)) {
                 sql.append("(").append(size).append(")");
             }
         }
@@ -62,13 +65,13 @@ public class ColumnDefinition {
     private String mapPostgreSQLType(String dataType) {
         return switch (dataType.toUpperCase()) {
             case "ID", "INT", "INTEGER" -> "INTEGER";
-            case "VARCHAR2", "VARCHAR" -> "VARCHAR";
+            case "VARCHAR2", "VARCHAR" -> TYPE_VARCHAR;
             case "DATE" -> "TIMESTAMP";
-            case "DECIMAL", "NUMERIC" -> "NUMERIC";
+            case "DECIMAL", "NUMERIC" -> TYPE_NUMERIC;
             case "BIGINT", "LONG" -> "BIGINT";
             case "TEXT" -> "TEXT";
             case "BOOLEAN", "BOOL" -> "BOOLEAN";
-            default -> "VARCHAR(255)";
+            default -> TYPE_VARCHAR + "(255)";
         };
     }
 }
