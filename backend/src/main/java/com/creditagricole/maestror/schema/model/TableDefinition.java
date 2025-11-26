@@ -35,15 +35,16 @@ public class TableDefinition {
 
         sql.append("\n);\n");
 
-        // Ajouter des commentaires
+        // Ajouter des commentaires (escape single quotes)
         if (description != null && !description.isEmpty()) {
-            sql.append("COMMENT ON TABLE ").append(tableName).append(" IS '").append(description).append("';\n");
+            sql.append("COMMENT ON TABLE ").append(tableName).append(" IS '")
+               .append(escapeSqlString(description)).append("';\n");
         }
 
         for (ColumnDefinition col : columns) {
             if (col.getDescription() != null && !col.getDescription().isEmpty()) {
                 sql.append("COMMENT ON COLUMN ").append(tableName).append(".").append(col.getColumnName())
-                        .append(" IS '").append(col.getDescription()).append("';\n");
+                        .append(" IS '").append(escapeSqlString(col.getDescription())).append("';\n");
             }
         }
 
@@ -55,5 +56,12 @@ public class TableDefinition {
      */
     public String toDropTableSql() {
         return "DROP TABLE IF EXISTS " + tableName + " CASCADE;";
+    }
+
+    /**
+     * Escape les apostrophes pour SQL
+     */
+    private String escapeSqlString(String value) {
+        return value.replace("'", "''");
     }
 }

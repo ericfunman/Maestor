@@ -54,17 +54,4 @@ public class SchemaTable {
         return ddl.toString();
     }
     
-    /**
-     * Vérifie si la table existe
-     */
-    public String checkTableExistsDDL() {
-        return "SELECT EXISTS(SELECT 1 FROM information_schema.tables WHERE table_name = '" + nomTable + "');";
-    }
-    
-    /**
-     * Récupère les colonnes existantes
-     */
-    public String getExistingColumnsDDL() {
-        return "SELECT column_name, data_type FROM information_schema.columns WHERE table_name = '" + nomTable + "';";
-    }
 }

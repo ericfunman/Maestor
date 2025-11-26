@@ -69,9 +69,12 @@ public class SchemaBuilderService {
             }
             
             log.info("Construction du schéma STAGING terminée avec succès");
+        } catch (IOException e) {
+            log.error("Erreur lors de la lecture du fichier Excel", e);
+            throw new IllegalStateException("Impossible de lire le fichier Excel: " + excelPath, e);
         } catch (Exception e) {
             log.error("Erreur lors de la construction du schéma", e);
-            throw new RuntimeException("Erreur lors de la construction du schéma STAGING", e);
+            throw new IllegalStateException("Erreur lors de la construction du schéma STAGING", e);
         }
     }
     
@@ -110,7 +113,7 @@ public class SchemaBuilderService {
             log.info("Table {} créée avec succès", table.getNomTable());
         } catch (Exception e) {
             log.error("Erreur lors de la création de la table {}", table.getNomTable(), e);
-            throw new RuntimeException("Erreur lors de la création de la table " + table.getNomTable(), e);
+            throw new IllegalStateException("Erreur lors de la création de la table " + table.getNomTable(), e);
         }
     }
     
@@ -147,7 +150,7 @@ public class SchemaBuilderService {
             log.info("Colonne {} ajoutée avec succès à la table {}", columnName, tableName);
         } catch (Exception e) {
             log.error("Erreur lors de l'ajout de la colonne {} à la table {}", columnName, tableName, e);
-            throw new RuntimeException("Erreur lors de l'ajout de la colonne", e);
+            throw new IllegalStateException("Erreur lors de l'ajout de la colonne " + columnName + " à la table " + tableName, e);
         }
     }
 }

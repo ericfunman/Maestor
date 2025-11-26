@@ -57,7 +57,7 @@ public class SchemaStagingBuilder {
             log.info("STAGING schema build completed successfully");
         } catch (IOException e) {
             log.error("Error building STAGING schema", e);
-            throw new RuntimeException("Failed to build STAGING schema", e);
+            throw new IllegalStateException("Failed to build STAGING schema from file: " + excelFilePath, e);
         }
     }
 
@@ -85,7 +85,7 @@ public class SchemaStagingBuilder {
             }
         } catch (Exception e) {
             log.error("Error processing table: {}", table.getTableName(), e);
-            throw new RuntimeException("Failed to process table: " + table.getTableName(), e);
+            throw new IllegalStateException("Failed to process table: " + table.getTableName(), e);
         }
     }
 
@@ -121,7 +121,7 @@ public class SchemaStagingBuilder {
             }
         } catch (IOException e) {
             log.error("Error dropping STAGING tables", e);
-            throw new RuntimeException("Failed to drop STAGING tables", e);
+            throw new IllegalStateException("Failed to drop STAGING tables from file: " + excelFilePath, e);
         }
     }
 }

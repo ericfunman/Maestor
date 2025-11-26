@@ -69,9 +69,10 @@ public class ParamFichierService {
      * 
      * @param idFichier ID du fichier
      * @return L'entité ParamFichier
+     * @throws IllegalArgumentException si le fichier n'existe pas
      */
     public ParamFichier getFichierById(Long idFichier) {
         return paramFichierRepository.findById(idFichier)
-                .orElseThrow(() -> new RuntimeException("Fichier non trouvé avec ID: " + idFichier));
+                .orElseThrow(() -> new IllegalArgumentException("Fichier non trouvé avec ID: " + idFichier));
     }
 }

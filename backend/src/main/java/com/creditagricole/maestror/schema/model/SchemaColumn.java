@@ -61,7 +61,9 @@ public class SchemaColumn {
      * Mappe les types du fichier Excel vers les types PostgreSQL
      */
     private String mapType(String type) {
-        if (type == null) return "VARCHAR";
+        if (type == null || type.isEmpty()) {
+            return "VARCHAR";
+        }
         return switch (type.toUpperCase()) {
             case "ID", "INT", "INTEGER" -> "SERIAL";
             case "VARCHAR2" -> "VARCHAR";
