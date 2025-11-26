@@ -19,6 +19,9 @@ WORKDIR /app
 # Copy the built jar from build stage
 COPY --from=build /app/target/*.jar app.jar
 
+# Copy Excel configuration file
+COPY Modeles_Mappings.xlsx .
+
 # Expose port
 EXPOSE 8080
 

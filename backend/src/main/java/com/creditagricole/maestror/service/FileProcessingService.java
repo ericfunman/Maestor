@@ -34,6 +34,7 @@ public class FileProcessingService {
     private final IncidentRepository incidentRepository;
     private final ControlRepository controlRepository;
     private final TestDataRepository testDataRepository;
+    private final ParamFichierService paramFichierService;
 
     @Transactional
     public void processFile(FileStorage fileStorage) {
@@ -238,7 +239,12 @@ public class FileProcessingService {
         int processed = 0;
         int failed = 0;
         
-        // Pour TEST, pas d'en-tête - traiter toutes les lignes depuis i=0
+        // 1. Créer une entrée dans PARAM_FICHIER pour tracer ce fichier
+        ParamFichier paramFichier = paramFichierService.enregistrerReceptionFichier(fileStorage.getFileName());
+        log.info("Fichier {} enregistré dans PARAM_FICHIER avec ID: {}", 
+                 fileStorage.getFileName(), paramFichier.getIdFichier());
+        
+        // 2. Pour TEST, pas d'en-tête - traiter toutes les lignes depuis i=0
         for (int i = 0; i < records.size(); i++) {
             try {
                 String[] row = records.get(i);
@@ -267,5 +273,9 @@ public class FileProcessingService {
         
         fileStorage.setProcessedRecords(processed);
         fileStorage.setFailedRecords(failed);
+        
+        // 3. Mettre à jour la date d'intégration STAGING après traitement réussi
+        paramFichierService.mettreAJourDateIntegration(paramFichier.getIdFichier());
+        log.info("Intégration STAGING terminée pour fichier ID: {}", paramFichier.getIdFichier());
     }
 }

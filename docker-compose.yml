@@ -60,6 +60,19 @@ services:
     networks:
       - maestror-network
 
+  # Adminer - Database Administration Tool
+  adminer:
+    image: adminer:latest
+    container_name: maestror-adminer
+    ports:
+      - "8081:8080"
+    depends_on:
+      - postgres
+    networks:
+      - maestror-network
+    environment:
+      ADMINER_DEFAULT_SERVER: postgres
+
   # SonarQube (optional - for code quality)
   sonarqube:
     image: sonarqube:community
