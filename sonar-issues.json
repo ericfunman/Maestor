@@ -1,54 +1,92 @@
 ﻿{
-    "total":  1,
+    "total":  7,
     "p":  1,
     "ps":  100,
     "paging":  {
                    "pageIndex":  1,
                    "pageSize":  100,
-                   "total":  1
+                   "total":  7
                },
-    "effortTotal":  6,
-    "debtTotal":  6,
+    "effortTotal":  37,
+    "debtTotal":  37,
     "issues":  [
                    {
-                       "key":  "AZq7bV8GOPLqMw4U4cn0",
-                       "rule":  "java:S1192",
-                       "severity":  "CRITICAL",
-                       "component":  "ericfunman_Maestor:src/main/java/com/creditagricole/maestror/service/RiskCalculationService.java",
+                       "key":  "AZq_3Lw0ejz3cHMJ7tc6",
+                       "rule":  "java:S1066",
+                       "severity":  "MAJOR",
+                       "component":  "ericfunman_Maestor:src/main/java/com/creditagricole/maestror/schema/model/ColumnDefinition.java",
                        "project":  "ericfunman_Maestor",
-                       "line":  134,
-                       "hash":  "deb789ecf8969ab75648324053825a2c",
+                       "line":  40,
+                       "hash":  "0b79bbf7f96791e5b80933b6638f10f3",
                        "textRange":  {
-                                         "startLine":  134,
-                                         "endLine":  134,
-                                         "startOffset":  17,
-                                         "endOffset":  25
+                                         "startLine":  40,
+                                         "endLine":  40,
+                                         "startOffset":  12,
+                                         "endOffset":  14
                                      },
                        "flows":  [
                                      {
                                          "locations":  [
                                                            {
-                                                               "component":  "ericfunman_Maestor:src/main/java/com/creditagricole/maestror/service/RiskCalculationService.java",
+                                                               "component":  "ericfunman_Maestor:src/main/java/com/creditagricole/maestror/schema/model/ColumnDefinition.java",
                                                                "textRange":  {
-                                                                                 "startLine":  174,
-                                                                                 "endLine":  174,
-                                                                                 "startOffset":  19,
-                                                                                 "endOffset":  27
-                                                                             },
-                                                               "msg":  "Duplication"
+                                                                                 "startLine":  39,
+                                                                                 "endLine":  39,
+                                                                                 "startOffset":  8,
+                                                                                 "endOffset":  10
+                                                                             }
                                                            }
                                                        ]
                                      }
                                  ],
                        "status":  "OPEN",
-                       "message":  "Use already-defined constant \u0027RISK_LEVEL_MEDIUM\u0027 instead of duplicating its value here.",
-                       "effort":  "6min",
-                       "debt":  "6min",
+                       "message":  "Merge this if statement with the enclosing one.",
+                       "effort":  "5min",
+                       "debt":  "5min",
+                       "tags":  [
+                                    "clumsy"
+                                ],
+                       "creationDate":  "2025-11-26T11:11:22+0000",
+                       "updateDate":  "2025-11-26T11:11:22+0000",
+                       "type":  "CODE_SMELL",
+                       "organization":  "ericfunman",
+                       "cleanCodeAttribute":  "CLEAR",
+                       "cleanCodeAttributeCategory":  "INTENTIONAL",
+                       "impacts":  [
+                                       {
+                                           "softwareQuality":  "MAINTAINABILITY",
+                                           "severity":  "MEDIUM"
+                                       }
+                                   ],
+                       "issueStatus":  "OPEN",
+                       "projectName":  "Maestror"
+                   },
+                   {
+                       "key":  "AZq_3Lw0ejz3cHMJ7tc9",
+                       "rule":  "java:S1192",
+                       "severity":  "CRITICAL",
+                       "component":  "ericfunman_Maestor:src/main/java/com/creditagricole/maestror/schema/model/ColumnDefinition.java",
+                       "project":  "ericfunman_Maestor",
+                       "line":  68,
+                       "hash":  "168228445b61e8e37ad3a9709964d016",
+                       "textRange":  {
+                                         "startLine":  68,
+                                         "endLine":  68,
+                                         "startOffset":  29,
+                                         "endOffset":  38
+                                     },
+                       "flows":  [
+
+                                 ],
+                       "status":  "OPEN",
+                       "message":  "Use already-defined constant \u0027TYPE_VARCHAR\u0027 instead of duplicating its value here.",
+                       "effort":  "4min",
+                       "debt":  "4min",
                        "tags":  [
                                     "design"
                                 ],
-                       "creationDate":  "2025-11-25T14:31:14+0000",
-                       "updateDate":  "2025-11-25T14:50:33+0000",
+                       "creationDate":  "2025-11-26T11:11:22+0000",
+                       "updateDate":  "2025-11-26T11:11:22+0000",
                        "type":  "CODE_SMELL",
                        "organization":  "ericfunman",
                        "cleanCodeAttribute":  "DISTINCT",
@@ -61,9 +99,251 @@
                                    ],
                        "issueStatus":  "OPEN",
                        "projectName":  "Maestror"
+                   },
+                   {
+                       "key":  "AZq_3Lw0ejz3cHMJ7tc7",
+                       "rule":  "java:S1192",
+                       "severity":  "CRITICAL",
+                       "component":  "ericfunman_Maestor:src/main/java/com/creditagricole/maestror/schema/model/ColumnDefinition.java",
+                       "project":  "ericfunman_Maestor",
+                       "line":  70,
+                       "hash":  "da1c8d0b39d833a20810bf1a5291e86d",
+                       "textRange":  {
+                                         "startLine":  70,
+                                         "endLine":  70,
+                                         "startOffset":  28,
+                                         "endOffset":  37
+                                     },
+                       "flows":  [
+
+                                 ],
+                       "status":  "OPEN",
+                       "message":  "Use already-defined constant \u0027TYPE_NUMERIC\u0027 instead of duplicating its value here.",
+                       "effort":  "4min",
+                       "debt":  "4min",
+                       "tags":  [
+                                    "design"
+                                ],
+                       "creationDate":  "2025-11-26T11:11:22+0000",
+                       "updateDate":  "2025-11-26T11:11:22+0000",
+                       "type":  "CODE_SMELL",
+                       "organization":  "ericfunman",
+                       "cleanCodeAttribute":  "DISTINCT",
+                       "cleanCodeAttributeCategory":  "ADAPTABLE",
+                       "impacts":  [
+                                       {
+                                           "softwareQuality":  "MAINTAINABILITY",
+                                           "severity":  "HIGH"
+                                       }
+                                   ],
+                       "issueStatus":  "OPEN",
+                       "projectName":  "Maestror"
+                   },
+                   {
+                       "key":  "AZq_3Lw0ejz3cHMJ7tc8",
+                       "rule":  "java:S1192",
+                       "severity":  "CRITICAL",
+                       "component":  "ericfunman_Maestor:src/main/java/com/creditagricole/maestror/schema/model/ColumnDefinition.java",
+                       "project":  "ericfunman_Maestor",
+                       "line":  70,
+                       "hash":  "da1c8d0b39d833a20810bf1a5291e86d",
+                       "textRange":  {
+                                         "startLine":  70,
+                                         "endLine":  70,
+                                         "startOffset":  17,
+                                         "endOffset":  26
+                                     },
+                       "flows":  [
+
+                                 ],
+                       "status":  "OPEN",
+                       "message":  "Use already-defined constant \u0027TYPE_DECIMAL\u0027 instead of duplicating its value here.",
+                       "effort":  "4min",
+                       "debt":  "4min",
+                       "tags":  [
+                                    "design"
+                                ],
+                       "creationDate":  "2025-11-26T11:11:22+0000",
+                       "updateDate":  "2025-11-26T11:11:22+0000",
+                       "type":  "CODE_SMELL",
+                       "organization":  "ericfunman",
+                       "cleanCodeAttribute":  "DISTINCT",
+                       "cleanCodeAttributeCategory":  "ADAPTABLE",
+                       "impacts":  [
+                                       {
+                                           "softwareQuality":  "MAINTAINABILITY",
+                                           "severity":  "HIGH"
+                                       }
+                                   ],
+                       "issueStatus":  "OPEN",
+                       "projectName":  "Maestror"
+                   },
+                   {
+                       "key":  "AZq_zrpnO72ceQZV8mPs",
+                       "rule":  "java:S1135",
+                       "severity":  "INFO",
+                       "component":  "ericfunman_Maestor:src/main/java/com/creditagricole/maestror/schema/builder/SchemaBuilderService.java",
+                       "project":  "ericfunman_Maestor",
+                       "line":  66,
+                       "hash":  "623ef55e0e7aa4b760e562cdbf1525ad",
+                       "textRange":  {
+                                         "startLine":  66,
+                                         "endLine":  66,
+                                         "startOffset":  0,
+                                         "endOffset":  89
+                                     },
+                       "flows":  [
+
+                                 ],
+                       "status":  "OPEN",
+                       "message":  "Complete the task associated to this TODO comment.",
+                       "effort":  "0min",
+                       "debt":  "0min",
+                       "tags":  [
+                                    "cwe"
+                                ],
+                       "creationDate":  "2025-11-26T10:56:03+0000",
+                       "updateDate":  "2025-11-26T10:56:03+0000",
+                       "type":  "CODE_SMELL",
+                       "organization":  "ericfunman",
+                       "cleanCodeAttribute":  "COMPLETE",
+                       "cleanCodeAttributeCategory":  "INTENTIONAL",
+                       "impacts":  [
+                                       {
+                                           "softwareQuality":  "MAINTAINABILITY",
+                                           "severity":  "INFO"
+                                       }
+                                   ],
+                       "issueStatus":  "OPEN",
+                       "projectName":  "Maestror"
+                   },
+                   {
+                       "key":  "AZq_zrp_O72ceQZV8mPy",
+                       "rule":  "java:S1135",
+                       "severity":  "INFO",
+                       "component":  "ericfunman_Maestor:src/main/java/com/creditagricole/maestror/schema/builder/SchemaStagingBuilder.java",
+                       "project":  "ericfunman_Maestor",
+                       "line":  76,
+                       "hash":  "e413e23f3d372b79a7f47bb2d6610302",
+                       "textRange":  {
+                                         "startLine":  76,
+                                         "endLine":  76,
+                                         "startOffset":  0,
+                                         "endOffset":  74
+                                     },
+                       "flows":  [
+
+                                 ],
+                       "status":  "OPEN",
+                       "message":  "Complete the task associated to this TODO comment.",
+                       "effort":  "0min",
+                       "debt":  "0min",
+                       "tags":  [
+                                    "cwe"
+                                ],
+                       "creationDate":  "2025-11-26T10:56:03+0000",
+                       "updateDate":  "2025-11-26T10:56:03+0000",
+                       "type":  "CODE_SMELL",
+                       "organization":  "ericfunman",
+                       "cleanCodeAttribute":  "COMPLETE",
+                       "cleanCodeAttributeCategory":  "INTENTIONAL",
+                       "impacts":  [
+                                       {
+                                           "softwareQuality":  "MAINTAINABILITY",
+                                           "severity":  "INFO"
+                                       }
+                                   ],
+                       "issueStatus":  "OPEN",
+                       "projectName":  "Maestror"
+                   },
+                   {
+                       "key":  "AZq_zrrXO72ceQZV8mP6",
+                       "rule":  "java:S135",
+                       "severity":  "MINOR",
+                       "component":  "ericfunman_Maestor:src/main/java/com/creditagricole/maestror/schema/parser/ExcelModelParser.java",
+                       "project":  "ericfunman_Maestor",
+                       "line":  57,
+                       "hash":  "a17ebb80e7e1510b6c5b572c768e6dc6",
+                       "textRange":  {
+                                         "startLine":  57,
+                                         "endLine":  57,
+                                         "startOffset":  12,
+                                         "endOffset":  15
+                                     },
+                       "flows":  [
+                                     {
+                                         "locations":  [
+                                                           {
+                                                               "component":  "ericfunman_Maestor:src/main/java/com/creditagricole/maestror/schema/parser/ExcelModelParser.java",
+                                                               "textRange":  {
+                                                                                 "startLine":  60,
+                                                                                 "endLine":  60,
+                                                                                 "startOffset":  20,
+                                                                                 "endOffset":  29
+                                                                             },
+                                                               "msg":  "\"continue\" statement."
+                                                           }
+                                                       ]
+                                     },
+                                     {
+                                         "locations":  [
+                                                           {
+                                                               "component":  "ericfunman_Maestor:src/main/java/com/creditagricole/maestror/schema/parser/ExcelModelParser.java",
+                                                               "textRange":  {
+                                                                                 "startLine":  65,
+                                                                                 "endLine":  65,
+                                                                                 "startOffset":  20,
+                                                                                 "endOffset":  26
+                                                                             },
+                                                               "msg":  "\"break\" statement."
+                                                           }
+                                                       ]
+                                     }
+                                 ],
+                       "status":  "OPEN",
+                       "message":  "Reduce the total number of break and continue statements in this loop to use at most one.",
+                       "effort":  "20min",
+                       "debt":  "20min",
+                       "tags":  [
+                                    "brain-overload"
+                                ],
+                       "creationDate":  "2025-11-26T10:56:03+0000",
+                       "updateDate":  "2025-11-26T10:56:03+0000",
+                       "type":  "CODE_SMELL",
+                       "organization":  "ericfunman",
+                       "cleanCodeAttribute":  "FOCUSED",
+                       "cleanCodeAttributeCategory":  "ADAPTABLE",
+                       "impacts":  [
+                                       {
+                                           "softwareQuality":  "MAINTAINABILITY",
+                                           "severity":  "LOW"
+                                       }
+                                   ],
+                       "issueStatus":  "OPEN",
+                       "projectName":  "Maestror"
                    }
                ],
     "components":  [
+                       {
+                           "organization":  "ericfunman",
+                           "key":  "ericfunman_Maestor:src/main/java/com/creditagricole/maestror/schema/parser/ExcelModelParser.java",
+                           "uuid":  "AZq_zrMsO72ceQZV8mPj",
+                           "enabled":  true,
+                           "qualifier":  "FIL",
+                           "name":  "ExcelModelParser.java",
+                           "longName":  "src/main/java/com/creditagricole/maestror/schema/parser/ExcelModelParser.java",
+                           "path":  "src/main/java/com/creditagricole/maestror/schema/parser/ExcelModelParser.java"
+                       },
+                       {
+                           "organization":  "ericfunman",
+                           "key":  "ericfunman_Maestor:src/main/java/com/creditagricole/maestror/schema/builder/SchemaBuilderService.java",
+                           "uuid":  "AZq_zrMsO72ceQZV8mPZ",
+                           "enabled":  true,
+                           "qualifier":  "FIL",
+                           "name":  "SchemaBuilderService.java",
+                           "longName":  "src/main/java/com/creditagricole/maestror/schema/builder/SchemaBuilderService.java",
+                           "path":  "src/main/java/com/creditagricole/maestror/schema/builder/SchemaBuilderService.java"
+                       },
                        {
                            "organization":  "ericfunman",
                            "key":  "ericfunman_Maestor",
@@ -75,13 +355,23 @@
                        },
                        {
                            "organization":  "ericfunman",
-                           "key":  "ericfunman_Maestor:src/main/java/com/creditagricole/maestror/service/RiskCalculationService.java",
-                           "uuid":  "AZq6titZcVVFjZ8tFez_",
+                           "key":  "ericfunman_Maestor:src/main/java/com/creditagricole/maestror/schema/builder/SchemaStagingBuilder.java",
+                           "uuid":  "AZq_zrMsO72ceQZV8mPa",
                            "enabled":  true,
                            "qualifier":  "FIL",
-                           "name":  "RiskCalculationService.java",
-                           "longName":  "src/main/java/com/creditagricole/maestror/service/RiskCalculationService.java",
-                           "path":  "src/main/java/com/creditagricole/maestror/service/RiskCalculationService.java"
+                           "name":  "SchemaStagingBuilder.java",
+                           "longName":  "src/main/java/com/creditagricole/maestror/schema/builder/SchemaStagingBuilder.java",
+                           "path":  "src/main/java/com/creditagricole/maestror/schema/builder/SchemaStagingBuilder.java"
+                       },
+                       {
+                           "organization":  "ericfunman",
+                           "key":  "ericfunman_Maestor:src/main/java/com/creditagricole/maestror/schema/model/ColumnDefinition.java",
+                           "uuid":  "AZq_zrMsO72ceQZV8mPd",
+                           "enabled":  true,
+                           "qualifier":  "FIL",
+                           "name":  "ColumnDefinition.java",
+                           "longName":  "src/main/java/com/creditagricole/maestror/schema/model/ColumnDefinition.java",
+                           "path":  "src/main/java/com/creditagricole/maestror/schema/model/ColumnDefinition.java"
                        }
                    ],
     "organizations":  [

@@ -1,11 +1,47 @@
 ﻿RAPPORT SONARCLOUD - MAESTROR
-Date: 2025-11-25 16:06:13
-TOTAL: 1 issues
+Date: 2025-11-26 12:14:21
+TOTAL: 7 issues
 
 ISSUE #1 - [CRITICAL] CODE_SMELL
 Regle: java:S1192
-Message: Use already-defined constant 'RISK_LEVEL_MEDIUM' instead of duplicating its value here.
-Fichier: src/main/java/com/creditagricole/maestror/service/RiskCalculationService.java
-Ligne: 134
+Message: Use already-defined constant 'TYPE_NUMERIC' instead of duplicating its value here.
+Fichier: src/main/java/com/creditagricole/maestror/schema/model/ColumnDefinition.java
+Ligne: 70
+
+ISSUE #2 - [CRITICAL] CODE_SMELL
+Regle: java:S1192
+Message: Use already-defined constant 'TYPE_VARCHAR' instead of duplicating its value here.
+Fichier: src/main/java/com/creditagricole/maestror/schema/model/ColumnDefinition.java
+Ligne: 68
+
+ISSUE #3 - [CRITICAL] CODE_SMELL
+Regle: java:S1192
+Message: Use already-defined constant 'TYPE_DECIMAL' instead of duplicating its value here.
+Fichier: src/main/java/com/creditagricole/maestror/schema/model/ColumnDefinition.java
+Ligne: 70
+
+ISSUE #4 - [INFO] CODE_SMELL
+Regle: java:S1135
+Message: Complete the task associated to this TODO comment.
+Fichier: src/main/java/com/creditagricole/maestror/schema/builder/SchemaBuilderService.java
+Ligne: 66
+
+ISSUE #5 - [INFO] CODE_SMELL
+Regle: java:S1135
+Message: Complete the task associated to this TODO comment.
+Fichier: src/main/java/com/creditagricole/maestror/schema/builder/SchemaStagingBuilder.java
+Ligne: 76
+
+ISSUE #6 - [MAJOR] CODE_SMELL
+Regle: java:S1066
+Message: Merge this if statement with the enclosing one.
+Fichier: src/main/java/com/creditagricole/maestror/schema/model/ColumnDefinition.java
+Ligne: 40
+
+ISSUE #7 - [MINOR] CODE_SMELL
+Regle: java:S135
+Message: Reduce the total number of break and continue statements in this loop to use at most one.
+Fichier: src/main/java/com/creditagricole/maestror/schema/parser/ExcelModelParser.java
+Ligne: 57
 
 
