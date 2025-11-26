@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ColumnDefinition {
     private static final String TYPE_VARCHAR = "VARCHAR";
+    private static final String TYPE_VARCHAR2 = "VARCHAR2";
     private static final String TYPE_NUMERIC = "NUMERIC";
     private static final String TYPE_DATE = "Date";
     private static final String TYPE_DECIMAL = "DECIMAL";
@@ -36,10 +37,9 @@ public class ColumnDefinition {
         sql.append(mapPostgreSQLType(dataType));
 
         // Taille si applicable
-        if (size != null && !size.isEmpty() && !dataType.equalsIgnoreCase(TYPE_DATE)) {
-            if (dataType.equalsIgnoreCase("VARCHAR2") || dataType.equalsIgnoreCase(TYPE_DECIMAL) || dataType.equalsIgnoreCase(TYPE_NUMERIC)) {
-                sql.append("(").append(size).append(")");
-            }
+        if (size != null && !size.isEmpty() && !dataType.equalsIgnoreCase(TYPE_DATE) 
+            && (dataType.equalsIgnoreCase(TYPE_VARCHAR2) || dataType.equalsIgnoreCase(TYPE_DECIMAL) || dataType.equalsIgnoreCase(TYPE_NUMERIC))) {
+            sql.append("(").append(size).append(")");
         }
 
         // Clé primaire
@@ -67,7 +67,7 @@ public class ColumnDefinition {
             case "ID", "INT", "INTEGER" -> "INTEGER";
             case "VARCHAR2", "VARCHAR" -> TYPE_VARCHAR;
             case "DATE" -> "TIMESTAMP";
-            case "DECIMAL", "NUMERIC" -> TYPE_NUMERIC;
+            case TYPE_DECIMAL, TYPE_NUMERIC -> TYPE_NUMERIC;
             case "BIGINT", "LONG" -> "BIGINT";
             case "TEXT" -> "TEXT";
             case "BOOLEAN", "BOOL" -> "BOOLEAN";

@@ -56,13 +56,11 @@ public class ExcelModelParser {
             // Sauter la ligne d'en-tête
             for (int rowNum = HEADER_ROW + 1; rowNum <= sheet.getLastRowNum(); rowNum++) {
                 Row row = sheet.getRow(rowNum);
-                if (row == null) {
+                String tableName = (row != null) ? getCellValue(row, COL_TABLE_NAME) : null;
+                
+                // Arrêter si ligne vide ou pas de nom de table (fin des données)
+                if (row == null || tableName == null || tableName.isEmpty()) {
                     continue;
-                }
-
-                String tableName = getCellValue(row, COL_TABLE_NAME);
-                if (tableName == null || tableName.isEmpty()) {
-                    break; // Fin des données
                 }
 
                 String columnName = getCellValue(row, COL_COLUMN_NAME);
